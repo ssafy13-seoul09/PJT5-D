@@ -37,12 +37,58 @@ public class UserController extends HttpServlet {
             case "regist":
                 doRegist(req, resp);
                 break;
+            case "follow":
+                doFollow(req, resp);
+                break;
+            case "unfollow":
+                doUnfollow(req, resp);
+                break;
+            case "followlist":
+                doFollowlist(req, resp);
+                break;
             default:
                 break;
         }
     }
 
-    private void doRegist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void doFollowlist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("loginUser") == null) {
+            req.setAttribute("msg", "로그인이 필요합니다.");
+            req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
+        }
+
+        String userId = req.getSession().getAttribute("loginUser").toString();
+        req.setAttribute("followlist", userService.getFollowings(userId));
+        req.getRequestDispatcher("/WEB-INF/user/following.jsp").forward(req, resp);
+	}
+
+	private void doUnfollow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("loginUser") == null) {
+            req.setAttribute("msg", "로그인이 필요합니다.");
+            req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
+        }
+
+        String userId = req.getSession().getAttribute("loginUser").toString();
+        String targetId = req.getParameter("id");
+        userService.unfollow(userId, targetId);
+
+        resp.sendRedirect("user?act=followlist");
+	}
+
+	private void doFollow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("loginUser") == null) {
+            req.setAttribute("msg", "로그인이 필요합니다.");
+            req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
+        }
+
+        String userId = req.getSession().getAttribute("loginUser").toString();
+        String targetId = req.getParameter("id");
+        userService.follow(userId, targetId);
+
+        resp.sendRedirect("user?act=followlist");
+	}
+
+	private void doRegist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         String password = req.getParameter("password");
 

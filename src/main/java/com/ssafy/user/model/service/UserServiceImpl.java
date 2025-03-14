@@ -1,5 +1,7 @@
 package com.ssafy.user.model.service;
 
+import java.util.List;
+
 import com.ssafy.user.model.dto.User;
 import com.ssafy.user.model.repository.MemoryUserRepository;
 import com.ssafy.user.model.repository.UserRepository;
@@ -92,4 +94,14 @@ public class UserServiceImpl implements UserService {
     public boolean userIdExists(String userId) {
         return repo.select(userId) != null;
     }
+
+	@Override
+	public List<String> getFollowings(String userId) {
+        return repo.select(userId).getFollowings();
+	}
+
+	@Override
+	public List<String> getLikedVideos(String userId) {
+        return repo.select(userId).getLikedVideos();
+	}
 }

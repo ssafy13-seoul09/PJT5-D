@@ -17,6 +17,7 @@ public class MemoryUserRepository implements UserRepository {
     private void insertDummy() {
         User admin = new User("ssafy", "admin");
         userMap.put(admin.getUserId(), admin);
+        userMap.put("ssafy2", new User("ssafy2", "admin"));
     }
 
     public static UserRepository getInstance() {

@@ -22,15 +22,21 @@ public class UserController extends HttpServlet {
         String act = req.getParameter("act");
 
         switch (act) {
+            case "loginform":
+                doLoginform(req, resp);
+                break;
             case "login":
                 doLogin(req, resp);
+                break;
+            case "logout":
+                doLogout(req, resp);
                 break;
             default:
                 break;
         }
     }
 
-	private void doLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    private void doLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String id = req.getParameter("id");
         String password = req.getParameter("password");
 
@@ -42,8 +48,20 @@ public class UserController extends HttpServlet {
         } else {
             String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
             req.setAttribute("msg", msg);
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
         }
-	}
+    }
 
+    private void doLogout(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        session.invalidate();
+    }
+
+    private void doLoginform(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("loginUser") != null) {
+            resp.sendRedirect("index.jsp");
+            return;
+        }
+        req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
+    }
 }

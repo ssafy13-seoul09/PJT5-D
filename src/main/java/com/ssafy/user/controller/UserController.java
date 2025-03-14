@@ -31,12 +31,37 @@ public class UserController extends HttpServlet {
             case "logout":
                 doLogout(req, resp);
                 break;
+            case "registform":
+                doRegistform(req, resp);
+                break;
+            case "regist":
+                doRegist(req, resp);
+                break;
             default:
                 break;
         }
     }
 
-    private void doLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    private void doRegist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String password = req.getParameter("password");
+
+        if (userService.userIdExists(id)) {
+            String msg = "이미 존재하는 아이디입니다.";
+            req.setAttribute("msg", msg);
+            req.getRequestDispatcher("/WEB-INF/user/register.jsp").forward(req, resp);
+            return;
+        } 
+
+        userService.register(id, password);
+        req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
+	}
+
+	private void doRegistform(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/user/register.jsp").forward(req, resp);
+	}
+
+	private void doLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String id = req.getParameter("id");
         String password = req.getParameter("password");
 

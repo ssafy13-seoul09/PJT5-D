@@ -88,4 +88,8 @@ public class UserServiceImpl implements UserService {
         throw new UnsupportedOperationException("Unimplemented method 'unlike'");
     }
 
+    @Override
+    public boolean userIdExists(String userId) {
+        return repo.select(userId) != null;
+    }
 }

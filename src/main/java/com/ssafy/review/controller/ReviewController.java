@@ -1,6 +1,7 @@
 package com.ssafy.review.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import com.ssafy.review.model.dto.Review;
 import com.ssafy.review.model.service.ReviewService;
@@ -116,10 +117,16 @@ public class ReviewController extends HttpServlet {
 		String writer = req.getParameter("writer");
         String contents = req.getParameter("contents");
         
-        Review review = new Review(title, writer, contents);
+        // 기존 리뷰 가져와서 수정하기 
+        Review review = service.select(reviewId); 
+        
+        review.setTitle(title);
+        review.setAuthorId(writer);
+        review.setCreatedAt(LocalDateTime.now());
+        review.setContents(contents);
         // 업데이트 수행 
         service.updateReview(review);
-        
+
         // 데이터 저장
         req.setAttribute("review", review);
         

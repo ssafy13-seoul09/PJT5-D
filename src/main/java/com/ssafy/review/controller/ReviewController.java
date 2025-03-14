@@ -6,6 +6,7 @@ import com.ssafy.review.model.dto.Review;
 import com.ssafy.review.model.service.ReviewService;
 import com.ssafy.review.model.service.ReviewServiceImpl;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -109,16 +110,33 @@ public class ReviewController extends HttpServlet {
 	
 	
 	// 내용들로 업데이트 수행
-	private void doUpdate(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+	private void doUpdate(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        int reviewId = Integer.parseInt(req.getParameter("id"));
+        String title = req.getParameter("title");
+		String writer = req.getParameter("writer");
+        String contents = req.getParameter("contents");
+        
+        Review review = new Review(title, writer, contents);
+        // 업데이트 수행 
+        service.updateReview(review);
+        
+        // 데이터 저장
+        req.setAttribute("review", review);
+        
+        // 포워딩
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
+        dispatcher.forward(req, resp);
 		
 	}
 
 	// 리뷰 상세보기 : reviewId 기반으로 리뷰 내용 받아와 detail pg에 띄워주기
 	private void doDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		int reviewId = );
+		int reviewId = Integer.parseInt(req.getParameter("reviewId"));
 		
-		req.setAttribute("review", Integer.parseInt(req.getParameter("reviewId")));
+		// 수정할 리뷰 선택 후 띄워주기
+		Review review = service.select(reviewId);
+		req.setAttribute("review", review);
+
 		req.getRequestDispatcher("/WEB-INF/review/detail.jsp").forward(req, resp);
 	}
 	

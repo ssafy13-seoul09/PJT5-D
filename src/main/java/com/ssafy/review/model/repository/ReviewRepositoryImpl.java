@@ -20,9 +20,9 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	// 생성자: 가라로 안에 리뷰들 넣어두기 일단 3개정도만 ?
 	private ReviewRepositoryImpl() {
 		// id = no++ > 연번 확인
-		map.put(1, new Review("힘들어요", "ssafy", "엉엉"));
-		map.put(2, new Review("운동해서 놀러갈래", "ssafy1", "한강 피크닉가자"));
-		map.put(3, new Review("그럴까요", "ssafy2", "사실 집이 제일 좋아"));
+		map.put(1, new Review("힘들어요", "ssafy", "엉엉잉잉앙앙"));
+		map.put(2, new Review("운동해서 놀러갈래", "ssafy1", "한강 피크닉가자 낄낄"));
+		map.put(3, new Review("그럴까요", "ssafy2", "사실 집이 제일 좋아 후엥"));
 	}
 	
 	// 싱글턴 -> 인스턴스 하나 생성

@@ -10,7 +10,7 @@
 
 	<h2>${review.title }</h2>
 	<div>
-		${review.content}
+		${review.contents}
 	</div>
 	
 	<!-- 삭제 & 수정 -->

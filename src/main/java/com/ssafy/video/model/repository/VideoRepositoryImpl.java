@@ -20,6 +20,10 @@ public class VideoRepositoryImpl implements VideoRepository{
 		map.put(1, new Video("https://www.youtube.com/watch?v=7TLk7pscICk", "채널1", 10, "복부", "누워서 5분 복부"));
 		map.put(2, new Video("https://www.youtube.com/watch?v=cMkZ6A7wngk", "채널2", 15, "전신", "전신 올인원"));
 		map.put(3, new Video("https://www.youtube.com/watch?v=4kZHHPH6heY", "채널3", 18, "전신", "전신운동 근력 유산소"));
+		map.put(4, new Video("https://www.youtube.com/watch?v=DehgWgRde-I", "채널4", 25, "복부", "악마의 복근 운동"));
+		map.put(5, new Video("https://www.youtube.com/watch?v=DWYDL-WxF1U", "채널5", 35, "하체", "하체날, 딱 10분밖에 없다면-스쿼트 10가지 동작"));
+		map.put(6, new Video("https://www.youtube.com/watch?v=Hx8Lc_0hUaI", "채널6", 28, "상체", "운동할 시간이 없다는 사람에게 보여주세요... 제발"));
+		
 	}
 	
 	public static VideoRepository getInstance() {

@@ -20,11 +20,14 @@ import jakarta.servlet.http.HttpServletResponse;
 public class VideoController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private VideoService service = VideoServiceImpl.getInstance();
+	private static ArrayList<Video> fullBody = new ArrayList<>();
+	private static ArrayList<Video> upperBody = new ArrayList<>();
+	private static ArrayList<Video> lowerBody = new ArrayList<>();
+	private static ArrayList<Video> abdomen = new ArrayList<>();
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String act = req.getParameter("act");
-		
 		
 		switch(act) {
 		case "favoriteList":
@@ -58,18 +61,49 @@ public class VideoController extends HttpServlet{
 	
 	// 부위별로 선택해서 출력한다.
 	protected void doBodypartList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String bodyPart = req.getParameter("bodyPart");
 		
 		List<Video> allVideos = service.selectAll();
 		int len = allVideos.size();
 		
-		ArrayList<Video> temp = new ArrayList<>();
 		for(int i=0; i<len; i++) {
+			if(allVideos.get(i).getFitPartName().equals("전신")) {
+				fullBody.add(allVideos.get(i));
+			}else if(allVideos.get(i).getFitPartName().equals("복부")) {
+				abdomen.add(allVideos.get(i));
+			}else if(allVideos.get(i).getFitPartName().equals("하체")) {
+				lowerBody.add(allVideos.get(i));
+			}else if(allVideos.get(i).getFitPartName().equals("상체")){
+				upperBody.add(allVideos.get(i));
+			}
 			
 			
 			//System.out.println(video);
 		}
 		
-		RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
+		// 받아오는 query 값에 따라, req에 담는 정보를 다르게 한다.
+		switch(bodyPart) {
+			case "전신":
+				req.setAttribute("fullBody", fullBody);
+				System.out.println(fullBody);
+				break;
+			case "복부":
+				req.setAttribute("abdomen", abdomen);
+				System.out.println(abdomen);
+				break;
+			case "상체":
+				req.setAttribute("upperBody", upperBody);
+				System.out.println(upperBody);
+				break;
+			case "하체":
+				req.setAttribute("lowerBody", lowerBody);
+				System.out.println(lowerBody);
+				break;
+			
+		}
+		
+		
+		RequestDispatcher disp = req.getRequestDispatcher("/");
 		disp.forward(req,resp);
 
 	}

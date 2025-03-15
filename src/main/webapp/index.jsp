@@ -3,11 +3,12 @@
 <%@ page import ="com.ssafy.video.model.dto.Video" %>   
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>  
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SSAFIT</title>
 </head>
 <body>
 	<h2>최근 가장 많이 본 영상</h2>
@@ -91,5 +92,6 @@
 	<a href = "video?act=selectAll">
 		Video1
 	</a>
+
 </body>
 </html>

@@ -15,7 +15,7 @@ public interface ReviewRepository {
 	
 	public abstract boolean updateReview(Review review);
 	
-	public abstract boolean deleteReveiw(int reviewId); 
+	public abstract boolean deleteReview(int reviewId); 
 	
 	public abstract boolean updateViewCnt(int reviewId);
 	

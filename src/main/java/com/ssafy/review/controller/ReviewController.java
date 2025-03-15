@@ -130,9 +130,9 @@ public class ReviewController extends HttpServlet {
         // 데이터 저장
         req.setAttribute("review", review);
         
-        // 포워딩
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
-        dispatcher.forward(req, resp);
+
+        // 수정된 리뷰 리스트를 다시 가져오도록 doList 호출
+        doList(req, resp);
 		
 	}
 

@@ -52,10 +52,13 @@ public class Video {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "Video [title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
+				+ channelName + ", viewCnt=" + viewCnt + ", reviews=" + reviews + "]";
 	}
+	
+	
+	
+	
 }

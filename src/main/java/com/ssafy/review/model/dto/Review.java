@@ -1,5 +1,6 @@
 package com.ssafy.review.model.dto;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 // reviewcontroller: 개별 리뷰 조회, 생성, 수정
@@ -19,15 +20,18 @@ public class Review {
 	}
 	
 	// 입력받아야 하는 항목 3개
-	public Review(String title, String authorId, String contents) {
-		this.reviewId = no++;
+	// id, createdat같이 자동으로 돌아가는건 사실 상관업써
+	// 어차피 객체 만들 때 같이 생성되기 땜무네
+	public Review(int id, String title, String authorId, String contents, LocalDateTime createdAt,  int viewCnt) {
+		this.reviewId = id;
 		this.title = title;
 		// authorId 지금 받는게 맞는건지?
 		this.authorId = authorId;
 		this.contents = contents;
-		this.createdAt = LocalDateTime.now();
+//		this.createdAt = LocalDateTime.now();
+		this.createdAt = createdAt;
 		// viewCnt 0으로 시작하는게 맞음?
-		this.viewCnt = 0;
+		this.viewCnt = viewCnt;
 	}
 	
 	// getter, setter

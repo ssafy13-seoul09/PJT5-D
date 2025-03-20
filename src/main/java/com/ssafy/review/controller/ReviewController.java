@@ -80,6 +80,7 @@ public class ReviewController extends HttpServlet {
 
 	// 작성 
 	private void doWrite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// 그럼 여기서 id, ..., 다 만들어야 함?? 
 		String title = req.getParameter("title");
 		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");

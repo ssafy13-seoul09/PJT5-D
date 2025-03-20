@@ -13,7 +13,6 @@ public class Video {
 	private List<Review> reviews;
 	
 	public Video() {
-		// TODO Auto-generated constructor stub
 	}
 	public Video(String youtubeId, String channelName, int viewCnt, String fitPartName, String title) {
 		this.channelName = channelName;

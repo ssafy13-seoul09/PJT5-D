@@ -51,6 +51,11 @@ public class VideoServiceImpl implements VideoService{
 		// db에서 가져와야 하므로 repo 호출  
 		repo.getReviewbyId(youtubeId);
 	}
+
+	@Override
+	public Video select(String youtubeId) {
+		return repo.select(youtubeId);
+	}
 	
 
 }

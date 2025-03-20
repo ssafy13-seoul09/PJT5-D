@@ -92,6 +92,10 @@
 	<a href = "video?act=selectAll">
 		모든 비디오 확인
 	</a>
+	
+	<a href = "video?act=selectAll">
+		모든 비디오 확인 Test
+	</a>
 
 </body>
 </html>

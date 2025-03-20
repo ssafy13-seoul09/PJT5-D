@@ -46,10 +46,17 @@ public class VideoRepositoryImpl implements VideoRepository{
 		return tmp;
 	}
 
+	// 개별 video 불러오기 
 	@Override
 	public Video select(String youtubeId) {
-		// TODO Auto-generated method stub
-		return null;
+		// youtubeId 기반으로 일치하는 video 리턴
+		Video vid = null;
+		for(int key: map.keySet()) {
+			if (map.get(key).getYoutubeId() == youtubeId) {
+				vid = map.get(key);			
+			}
+		}
+		return vid;
 	}
 
 	@Override

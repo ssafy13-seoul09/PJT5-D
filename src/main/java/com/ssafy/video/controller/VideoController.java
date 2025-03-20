@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ssafy.review.model.dto.Review;
 import com.ssafy.video.model.dto.Video;
 import com.ssafy.video.model.service.VideoService;
 import com.ssafy.video.model.service.VideoServiceImpl;
@@ -44,11 +45,13 @@ public class VideoController extends HttpServlet{
 			
 		case "getReview": 
 			doGetReview(req, resp);
+			
+		case "selectVid":
+			doSelectVid(req, resp);
 		}
 		
 		
 	}
-
 
 	// 조회수가 가장 많은 비디오 순으로 출력한다.
 	protected void doFavoriteList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -118,7 +121,9 @@ public class VideoController extends HttpServlet{
 		req.setAttribute("list", service.selectAll());
 		
 		RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/showAllVideos.jsp");
+		RequestDispatcher dispTest = req.getRequestDispatcher("/test.jsp");
 		disp.forward(req,resp);
+		dispTest.forward(req, resp);
 
 	}
 	
@@ -131,6 +136,22 @@ public class VideoController extends HttpServlet{
 		
 		// 가져온걸 어디로 던져줘야 하지? index 페이지로 다시 넘겨주기?? 
 		
+	}
+ 
+	// 개별 비디오 가져오기
+	private void doSelectVid(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 가져올 비디 선택
+		String youtubeId = req.getParameter("youtubeId");
+		
+		// youtubeId 기반으로 video 가져오기 
+		Video video = service.select(youtubeId);
+		
+	    // 가져온 비디오를 JSP에 전달
+	    req.setAttribute("video", video);
+
+	    // 비디오 상세 페이지로 포워딩
+	    RequestDispatcher disp = req.getRequestDispatcher("/videoDetail.jsp");
+	    disp.forward(req, resp);
 	}
 	
 

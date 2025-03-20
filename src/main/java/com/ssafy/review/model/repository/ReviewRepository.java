@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.ssafy.review.model.dto.Review;
 
-public interface ReviewRepository {
+public interface ReviewRepository {	
 	// 사이트의 모든리뷰 가져오기
 	public abstract List<Review> selectAll();
 	
-	// 개별리뷰 -> 비디오에 연결
-	public abstract Review select(int reviewId);
+	// youtubeId와 일치하는 리뷰 찾아서 리턴 (videorepo와 소통)
+	public abstract List<Review> getReviewsbyId(String youtubeId);
+	
+	// 개별 리뷰 조회/삭제/업데이트 위한 1개 선택하기
+	public abstract Review select(int reivewId);
 	
 	public abstract boolean insertReview(Review review);
 	

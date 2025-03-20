@@ -1,4 +1,7 @@
 package com.ssafy.video.model.repository;
+import com.ssafy.review.model.dto.Review;
+import com.ssafy.review.model.repository.ReviewRepository;
+import com.ssafy.review.model.repository.ReviewRepositoryImpl;
 import com.ssafy.video.model.dto.Video;
 
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import com.ssafy.video.model.dto.Video;
 public class VideoRepositoryImpl implements VideoRepository{
 	// 영화를 담을 객체를 Singleton Pattern으로 관리해준다.
 	private static VideoRepository repo = new VideoRepositoryImpl();
+	private static ReviewRepository repoReview = ReviewRepositoryImpl.getInstance();
 	
 	// Video를 담을 Map을 형성해준다.
 	private Map<Integer, Video> map = new HashMap<>();
@@ -53,6 +57,14 @@ public class VideoRepositoryImpl implements VideoRepository{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	// youtubeId와 같은 id 가지는 리뷰 불러오기 
+	@Override
+	public List<Review> getReviewbyId(String youtubeId) {
+		// reviewrepo와 소통해 youtubeId와 일치하는 리뷰 찾아서 가져오기 
+		List<Review> list = repoReview.getReviewsbyId(youtubeId);
+		
+		return list;
+	}
 	
 }

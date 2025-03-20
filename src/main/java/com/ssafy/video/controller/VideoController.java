@@ -41,11 +41,15 @@ public class VideoController extends HttpServlet{
 		case "selectAll":
 			doSelectAll(req,resp);
 			break;
+			
+		case "getReview": 
+			doGetReview(req, resp);
 		}
 		
 		
 	}
-	
+
+
 	// 조회수가 가장 많은 비디오 순으로 출력한다.
 	protected void doFavoriteList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -118,8 +122,16 @@ public class VideoController extends HttpServlet{
 
 	}
 	
+	// youtubeId 일치하는 리뷰 찾기 
+	private void doGetReview(HttpServletRequest req, HttpServletResponse resp) {
+		String youtubeId = (String) req.getAttribute("youtubeId");
+		
+		// service 호출 
+		service.getReviewbyId(youtubeId);
+		
+		// 가져온걸 어디로 던져줘야 하지? index 페이지로 다시 넘겨주기?? 
+		
+	}
 	
-	
-
 
 }

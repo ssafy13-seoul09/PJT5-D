@@ -85,7 +85,8 @@ public class ReviewController extends HttpServlet {
 		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
 		
-		Review review = new Review(title, writer, content);
+//		Review review = new Review(0, title, writer, content);
+		Review review = new Review(1, title, writer, content, null, 0, "https://www.youtube.com/watch?v=7TLk7pscICk");
 		
 		//게시글 등록: 서비스 호출
 		service.insertReview(review);

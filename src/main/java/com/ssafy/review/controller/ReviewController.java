@@ -113,15 +113,16 @@ public class ReviewController extends HttpServlet {
 	}
 	
 	
-	// 내용들로 업데이트 수행
+	// 내용 실제 업데이트 수행
 	private void doUpdate(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        int reviewId = Integer.parseInt(req.getParameter("id"));
+		int reviewId = Integer.parseInt(req.getParameter("id"));
         String title = req.getParameter("title");
 		String writer = req.getParameter("writer");
         String contents = req.getParameter("contents");
         
         // 기존 리뷰 가져와서 수정하기 
         Review review = service.select(reviewId); 
+        String youtubeId = review.getYoutubeId();
         
         review.setTitle(title);
         review.setAuthorId(writer);
@@ -132,9 +133,8 @@ public class ReviewController extends HttpServlet {
         // 데이터 저장
         req.setAttribute("review", review);
         
-
-        // 수정된 리뷰 리스트를 다시 가져오도록 doList 호출
-        doList(req, resp);
+        // 저장한 후 이전 페이지로 이동 
+		resp.sendRedirect(req.getContextPath() + "/video?act=reviewPage&youtubeId=" + youtubeId);
 		
 	}
 
@@ -153,11 +153,13 @@ public class ReviewController extends HttpServlet {
 	// id 기반으로 삭제 수행 
 	private void doRemove(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		int reviewId = Integer.parseInt(req.getParameter("reviewId"));
-		
+        Review review = service.select(reviewId); 
+
+		String youtubeId = review.getYoutubeId();
 		// 호출
 		service.removeReview(reviewId);
 		// 게시글 지운 후 리뷰리스트로 돌아가기
-		resp.sendRedirect("review?act=list");
+		resp.sendRedirect(req.getContextPath() + "/video?act=reviewPage&youtubeId=" + youtubeId);
 	
 	}
 

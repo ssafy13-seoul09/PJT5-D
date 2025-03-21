@@ -1,3 +1,5 @@
+USE ssafit;
+
 INSERT INTO
     video (
         youtube_id,
@@ -95,6 +97,12 @@ VALUES
         '운동해서 놀러갈래',
         'ssafy2',
         '사실 집이 제일 좋아 후엥'
+    ), 
+    (
+		'4kZHHPH6heY',
+        '그아아악', 
+        'ssafy',
+        '우에에에엑'
     );
 
 INSERT INTO
@@ -111,3 +119,5 @@ VALUES
     ('ssafy', 'eduharry'),
     ('hailey', 'ssafy'),
     ('eduharry', 'ssafy');
+    
+SELECT * FROM review;

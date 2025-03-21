@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS following;
 CREATE TABLE likedvideo (
     youtube_id VARCHAR(11) NOT NULL,
     user_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (youtube_id, user_id),
     FOREIGN KEY (youtube_id) REFERENCES video(youtube_id),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -48,6 +49,7 @@ CREATE TABLE likedvideo (
 CREATE TABLE following (
     follower_id VARCHAR(255) NOT NULL,
     followee_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (follower_id, followee_id),
     FOREIGN KEY (follower_id) REFERENCES user(user_id),
     FOREIGN KEY (followee_id) REFERENCES user(user_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;

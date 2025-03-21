@@ -125,7 +125,7 @@
 	
 	<h2>모든 비디오 선택</h2>
 	<a href = "video?act=selectAll">
-		모든 비디오 선택
+		모든 비디오 확인
 	</a>
 
 </body>

@@ -59,8 +59,8 @@ public class VideoController extends HttpServlet{
 	protected void doReview(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String youtubeId = req.getParameter("youtubeId");
 		
+        service.updateViewCnt(youtubeId);
 		List<Review> reviewList = Rservice.getReviewsbyId(youtubeId);
-		service.updateViewCnt(youtubeId);
 		Video selVid = service.select(youtubeId);
 
 		// 리뷰 불러오기 위함

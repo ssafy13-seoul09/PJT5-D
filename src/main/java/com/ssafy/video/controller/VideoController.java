@@ -57,7 +57,7 @@ public class VideoController extends HttpServlet{
 	protected void doReview(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String youtubeId = req.getParameter("youtubeId");
 		
-		Video selVid = service.selectOne(youtubeId);
+		Video selVid = service.select(youtubeId);
 		
 		req.setAttribute("selVid", selVid);
 		

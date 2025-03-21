@@ -66,4 +66,10 @@ public class ReviewServiceImpl implements ReviewService {
 		return true;
 	}
 
+	@Override
+	public boolean updateViewCnt(int reviewId) {
+		if (reviewId <= 0) return false;
+		return repo.updateViewCnt(reviewId);
+	}
+
 }

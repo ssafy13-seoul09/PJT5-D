@@ -1,3 +1,5 @@
+USE ssafit;
+
 INSERT INTO
     video (
         youtube_id,

@@ -25,5 +25,7 @@ public interface ReviewService {
 	// 리뷰 삭제
 	public abstract boolean removeReview(int reviewId);
 	
+	public abstract boolean updateViewCnt(int reviewId);
+	
 	
 }

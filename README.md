@@ -74,7 +74,7 @@ PJT4-B
 
 ```
 ## ERD Table
-![ERDiagram](https://github.com/user-attachments/assets/41893808-5a59-4587-8adf-17815972a818)
+![ER Diagram](https://github.com/user-attachments/assets/0823ddc2-2459-4938-bca1-9af2e73935c2)
 
 
 

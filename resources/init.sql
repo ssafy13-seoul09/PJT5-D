@@ -103,6 +103,12 @@ VALUES
         '그아아악', 
         'ssafy',
         '우에에에엑'
+    ), 
+	(
+		'4kZHHPH6heY',
+        '힝구리퐁퐁', 
+        'ssafy2',
+        '배고파요'
     );
 
 INSERT INTO

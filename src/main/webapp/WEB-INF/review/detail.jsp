@@ -17,6 +17,7 @@
 	<a href="review?act=remove&reviewId=${review.reviewId}">삭제</a>
 	<!--  updateform 불러오기 -->
 	<a href="review?act=updateform&reviewId=${review.reviewId}">수정</a>
-
+	<!-- 목록 보기 -->
+	<!-- <a href="video?act=detail&youtubeId=${review.youtubeId}">돌아가기</a> -->
 </body>
 </html>

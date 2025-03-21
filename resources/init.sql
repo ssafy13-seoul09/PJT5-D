@@ -111,18 +111,3 @@ VALUES
     ('ssafy', 'eduharry'),
     ('hailey', 'ssafy'),
     ('eduharry', 'ssafy');
-    
- 
-SELECT *
-FROM user
-;
- 
-SELECT *
-FROM video
-;
-
-SELECT *
-FROM review
-;
-
-    

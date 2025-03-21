@@ -37,7 +37,7 @@
 				<%-- ${status.count} : ${movie}<br> --%>
 				<tr>
 					<td>${status.count}</td>
-					<td>${video.getChannelName()}</td>
+					 <td> <a href = "video?act=reviewPage&youtubeId=${video.youtubeId}"> ${video.title}</a></td>
 					<td>${video.getFitPartName()}</td>
 					<td>${video.getYoutubeId()}</td>
 					<td>${video.getViewCnt()}</td>

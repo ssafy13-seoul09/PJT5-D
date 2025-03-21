@@ -68,7 +68,7 @@
 				<%-- ${status.count} : ${movie}<br> --%>
 				<tr>
 					<td>${status.count}</td>
-					<td>${video.title}</td>
+					 <td> <a href = "video?act=reviewPage&youtubeId=${video.youtubeId}"> ${video.title}</a></td>
 					<td>${video.fitPartName}</td>
 					<td>${video.youtubeId}</td>
 					<td>${video.viewCnt}</td>
@@ -81,7 +81,7 @@
 				<%-- ${status.count} : ${movie}<br> --%>
 				<tr>
 					<td>${status.count}</td>
-					<td>${video.title}</td>
+					 <td> <a href = "video?act=reviewPage&youtubeId=${video.youtubeId}"> ${video.title}</a></td>
 					<td>${video.fitPartName}</td>
 					<td>${video.youtubeId}</td>
 					<td>${video.viewCnt}</td>
@@ -94,7 +94,7 @@
 				<%-- ${status.count} : ${movie}<br> --%>
 				<tr>
 					<td>${status.count}</td>
-					<td>${video.title}</td>
+					 <td> <a href = "video?act=reviewPage&youtubeId=${video.youtubeId}"> ${video.title}</a></td>
 					<td>${video.fitPartName}</td>
 					<td>${video.youtubeId}</td>
 					<td>${video.viewCnt}</td>
@@ -108,7 +108,7 @@
 				<%-- ${status.count} : ${movie}<br> --%>
 				<tr>
 					<td>${status.count}</td>
-					<td>${video.title}</td>
+					 <td> <a href = "video?act=reviewPage&youtubeId=${video.youtubeId}"> ${video.title}</a></td>
 					<td>${video.fitPartName}</td>
 					<td>${video.youtubeId}</td>
 					<td>${video.viewCnt}</td>

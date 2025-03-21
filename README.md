@@ -53,7 +53,8 @@ PJT3-B
 
 ```
 ## ERD Table
-![image](https://github.com/user-attachments/assets/e56a3b12-f446-47aa-94c8-efb53d505b65)
+![image](https://github.com/user-attachments/assets/bd31f333-3181-464a-89e6-035454f4aefd)
+
 
 
 ## 사용 예시 (TBA)

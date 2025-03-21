@@ -1,11 +1,12 @@
 # PJT 소개 
 - 운동 관련 영상 업로드 및 리뷰 작성 프로그램
+- 개발 언어: Java, JSP, MySQL
 - 조원: 이아영, 이재석, 이승민 
 
 ## 팀원 및 역할 분배
-- 이아영: Reveiw 객체 관리
-- 이재석: Video 객체 관리
-- 이승민: User 객체 관리 
+- 이아영: Review 기능 구현
+- 이재석: Video 기능 구현
+- 이승민: User 기능 구현 및 DB 생성
 
 ## 프로젝트 구조 (TBC)
 ```
@@ -51,8 +52,8 @@ PJT3-B
 └── Servers
 
 ```
-
-
+## ERD Table
+![image](https://github.com/user-attachments/assets/e56a3b12-f446-47aa-94c8-efb53d505b65)
 
 
 ## 사용 예시 (TBA)

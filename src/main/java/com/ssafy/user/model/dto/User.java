@@ -30,6 +30,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", password=" + password + "]";
+        return userId;
     }
 }

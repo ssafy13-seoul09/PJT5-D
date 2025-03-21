@@ -28,8 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void getReviewsbyId(String youtubeId) {
-		repo.getReviewsbyId(youtubeId);
+	public List<Review> getReviewsbyId(String youtubeId) {
+		return repo.getReviewsbyId(youtubeId);
 	}
 	
 	@Override

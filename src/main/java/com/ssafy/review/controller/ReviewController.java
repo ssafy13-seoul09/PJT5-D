@@ -3,7 +3,6 @@ package com.ssafy.review.controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-import com.mysql.cj.Session;
 import com.ssafy.review.model.dto.Review;
 import com.ssafy.review.model.service.ReviewService;
 import com.ssafy.review.model.service.ReviewServiceImpl;

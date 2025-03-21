@@ -26,6 +26,10 @@
 			<td>${selVid.viewCnt}</td>
 		</tr>
 	</table>
+    <c:if test="${not empty sessionScope.loginUser}">
+      <a href="user?act=likevideo&id=${selVid.youtubeId}">좋아요</a>
+      <a href="user?act=unlikevideo&id=${selVid.youtubeId}">좋아요 취소</a>
+    </c:if>
 	
 	<h2>영상 리뷰 목록</h2>
 	<table border ="1">

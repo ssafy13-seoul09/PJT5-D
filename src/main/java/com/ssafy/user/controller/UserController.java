@@ -136,9 +136,10 @@ public class UserController extends HttpServlet {
 
         String userId = req.getSession().getAttribute("loginUser").toString();
         String targetId = req.getParameter("id");
+        String referer = req.getHeader("referer");
         userService.unfollow(userId, targetId);
 
-        resp.sendRedirect("user?act=followlist");
+        resp.sendRedirect(referer);
     }
 
     private void doFollow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -148,9 +149,10 @@ public class UserController extends HttpServlet {
 
         String userId = req.getSession().getAttribute("loginUser").toString();
         String targetId = req.getParameter("id");
+        String referer = req.getHeader("referer");
         userService.follow(userId, targetId);
 
-        resp.sendRedirect("user?act=followlist");
+        resp.sendRedirect(referer);
     }
 
     // TODO: Consistent Naming
@@ -172,9 +174,10 @@ public class UserController extends HttpServlet {
 
         String userId = req.getSession().getAttribute("loginUser").toString();
         String videoId = req.getParameter("id");
+        String referer = req.getHeader("referer");
         userService.unlikeVideo(userId, videoId);
 
-        resp.sendRedirect("user?act=likedvideolist");
+        resp.sendRedirect(referer);
 	}
 
 	private void doLikeVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -184,10 +187,9 @@ public class UserController extends HttpServlet {
 
         String userId = req.getSession().getAttribute("loginUser").toString();
         String videoId = req.getParameter("id");
+        String referer = req.getHeader("referer");
         userService.likeVideo(userId, videoId);
         
-        
-
-        resp.sendRedirect("user?act=likedvideolist");
+        resp.sendRedirect(referer);
 	}
 }

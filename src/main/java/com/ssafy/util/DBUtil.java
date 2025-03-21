@@ -25,7 +25,7 @@ public class DBUtil {
         }
     }
 
-    public static DBUtil getINSTANCE() {
+    public static DBUtil getInstance() {
         return INSTANCE;
     }
 

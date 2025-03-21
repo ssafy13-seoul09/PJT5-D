@@ -125,5 +125,3 @@ VALUES
     ('ssafy', 'eduharry'),
     ('hailey', 'ssafy'),
     ('eduharry', 'ssafy');
-    
-SELECT * FROM review;

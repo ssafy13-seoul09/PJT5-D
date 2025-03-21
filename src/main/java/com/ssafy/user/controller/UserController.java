@@ -65,7 +65,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-	private boolean checkLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private boolean checkLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().getAttribute("loginUser") == null) {
             req.setAttribute("msg", "로그인이 필요합니다.");
             req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req, resp);
@@ -156,7 +156,8 @@ public class UserController extends HttpServlet {
     }
 
     // TODO: Consistent Naming
-	private void doLikedVideoList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void doLikedVideoList(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         if (!checkLogin(req, resp)) {
             return;
         }
@@ -164,7 +165,7 @@ public class UserController extends HttpServlet {
         String userId = req.getSession().getAttribute("loginUser").toString();
         req.setAttribute("likedvideolist", userService.getLikedVideos(userId));
         req.getRequestDispatcher("/WEB-INF/user/favorite.jsp").forward(req, resp);
-	}
+    }
 
     // TODO: Like/Unlike Failure Handling
     private void doUnlikeVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -178,9 +179,9 @@ public class UserController extends HttpServlet {
         userService.unlikeVideo(userId, videoId);
 
         resp.sendRedirect(referer);
-	}
+    }
 
-	private void doLikeVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void doLikeVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!checkLogin(req, resp)) {
             return;
         }
@@ -189,7 +190,7 @@ public class UserController extends HttpServlet {
         String videoId = req.getParameter("id");
         String referer = req.getHeader("referer");
         userService.likeVideo(userId, videoId);
-        
+
         resp.sendRedirect(referer);
-	}
+    }
 }

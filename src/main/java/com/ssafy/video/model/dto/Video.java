@@ -1,8 +1,7 @@
 package com.ssafy.video.model.dto;
 
-import java.util.List;
-
-import com.ssafy.review.model.dto.Review;
+//import java.util.List;
+//import com.ssafy.review.model.dto.Review;
 
 public class Video {
 	private String title;
@@ -10,9 +9,11 @@ public class Video {
 	private String youtubeId;
 	private String channelName;
 	private int viewCnt;
-	private List<Review> reviews;
+//	private List<Review> reviews;
+	// review 객체 날리고 pk : fk로 구동
 	
 	public Video() {
+
 	}
 	public Video(String youtubeId, String channelName, int viewCnt, String fitPartName, String title) {
 		this.channelName = channelName;
@@ -54,7 +55,7 @@ public class Video {
 	@Override
 	public String toString() {
 		return "Video [title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
-				+ channelName + ", viewCnt=" + viewCnt + ", reviews=" + reviews + "]";
+				+ channelName + ", viewCnt=" + viewCnt + "]";
 	}
 	
 	

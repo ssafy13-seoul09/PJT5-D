@@ -19,10 +19,10 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	
 	// 생성자: 가라로 안에 리뷰들 넣어두기 일단 3개정도만 ?
 	private ReviewRepositoryImpl() {
-		// id = no++ > 연번 확인
-		map.put(1, new Review("힘들어요", "ssafy", "엉엉잉잉앙앙"));
-		map.put(2, new Review("운동해서 놀러갈래", "ssafy1", "한강 피크닉가자 낄낄"));
-		map.put(3, new Review("그럴까요", "ssafy2", "사실 집이 제일 좋아 후엥"));
+		// 생성자는 그냥 가라로 만들어주깅 
+		map.put(1, new Review(1, "힘들어요", "ssafy", "엉엉잉잉앙앙", null, 0, "https://www.youtube.com/watch?v=7TLk7pscICk"));
+		map.put(2, new Review(0, "운동해서 놀러갈래", "ssafy1", "한강 피크닉가자 낄낄", null, 0, "https://www.youtube.com/watch?v=7TLk7pscICk"));
+		map.put(3, new Review(0, "그럴까요", "ssafy2", "사실 집이 제일 좋아 후엥", null, 0, "https://www.youtube.com/watch?v=cMkZ6A7wngk"));
 	}
 	
 	// 싱글턴 -> 인스턴스 하나 생성
@@ -42,7 +42,22 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		return reviewList;
 	}
 
-	// id 기반으로 개별 리뷰 불러오기
+	// youtubeId와 일치하는 리뷰 리스트 반환하기 (videorepo와 소통)
+	@Override
+	public List<Review> getReviewsbyId(String youtubeId) {
+		List<Review> reviewList = new ArrayList<>();
+		
+		// db에 있는 모든 리뷰 리스트 중 youtubeId와 일치하는 것 찾아서 리스트로 리턴
+		for (int key : map.keySet()) {
+			if (youtubeId == map.get(key).getYoutubeId()) {
+				reviewList.add(map.get(key));
+			}
+		}
+		
+		return reviewList;
+	}
+	
+	// 리뷰 1개 찾기 
 	@Override
 	public Review select(int reviewId) {
 		return map.get(reviewId);

@@ -10,7 +10,10 @@ public interface ReviewService {
 	// 전체 리뷰 조회 (필요?? 일단 작성)
 	public abstract List<Review> selectAll();
 
-	// 개별 리뷰 조회
+	// 리뷰 조회 > youtubeId와 일치하는 리뷰 찾기 (video와 소통)
+	public abstract void getReviewsbyId(String youtubeId);
+	
+	// id 기반으로 리뷰 1개 찾기
 	public abstract Review select(int reviewId);
 
 	// 리뷰 작성

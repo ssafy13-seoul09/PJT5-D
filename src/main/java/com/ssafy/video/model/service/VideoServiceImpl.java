@@ -1,7 +1,11 @@
 package com.ssafy.video.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.ssafy.review.model.dto.Review;
+import com.ssafy.review.model.repository.ReviewRepository;
+import com.ssafy.review.model.repository.ReviewRepositoryImpl;
 import com.ssafy.video.model.dto.Video;
 import com.ssafy.video.model.repository.VideoRepository;
 import com.ssafy.video.model.repository.VideoRepositoryImpl;
@@ -39,6 +43,18 @@ public class VideoServiceImpl implements VideoService{
 		
 		
 		return null;
+	}
+
+	@Override
+	public void getReviewbyId(String youtubeId) {
+		
+		// db에서 가져와야 하므로 repo 호출  
+		repo.getReviewbyId(youtubeId);
+	}
+
+	@Override
+	public Video select(String youtubeId) {
+		return repo.select(youtubeId);
 	}
 	
 

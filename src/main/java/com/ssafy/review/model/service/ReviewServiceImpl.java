@@ -28,6 +28,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public void getReviewsbyId(String youtubeId) {
+		repo.getReviewsbyId(youtubeId);
+	}
+	
+	@Override
 	public Review select(int reviewId) {
 		// TODO Auto-generated method stub
 		return repo.select(reviewId);

@@ -21,6 +21,7 @@ public class VideoController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private VideoService service = VideoServiceImpl.getInstance();
 	
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String act = req.getParameter("act");
@@ -37,19 +38,41 @@ public class VideoController extends HttpServlet{
 		case "selectAll":
 			doSelectAll(req,resp);
 			break;
+			
+		case "reviewPage":
+			doReview(req,resp);
+			break;
+			
 		}
 		
 		
 	}
 	
+	// 리뷰 페이지로 넘어간다.
+	// parameter로 받은 youtubeId와 동일한 youtubeId를 가진 Video를 request에 담아서 보낸다.
+	protected void doReview(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String youtubeId = req.getParameter("youtubeId");
+		
+		Video selVid = service.selectOne(youtubeId);
+		
+		req.setAttribute("selVid", selVid);
+		
+		RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
+		disp.forward(req, resp);
+		
+	}
 	// 조회수가 가장 많은 비디오 순으로 출력한다.
 	protected void doFavoriteList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		List<Video> allVideos = service.selectAll();
-		System.out.println(allVideos);
 		
+		List<Video> popVideos = service.selectPopularVideos();
 		
-		RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
+		req.setAttribute("popVideos", popVideos);
+		
+		// RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
+		RequestDispatcher disp = req.getRequestDispatcher("/");
+		
 		disp.forward(req,resp);
 	
 		
@@ -82,11 +105,11 @@ public class VideoController extends HttpServlet{
 				//System.out.println(video);
 		}
 		
-		System.out.println("------");
-		System.out.println(fullBody);
-		System.out.println(upperBody);
-		System.out.println(lowerBody);
-		System.out.println(abdomen);
+		/*
+		 * System.out.println("------"); System.out.println(fullBody);
+		 * System.out.println(upperBody); System.out.println(lowerBody);
+		 * System.out.println(abdomen);
+		 */
 		
 		// 받아오는 query 값에 따라, req에 담는 정보를 다르게 한다.
 		switch(bodyPart) {

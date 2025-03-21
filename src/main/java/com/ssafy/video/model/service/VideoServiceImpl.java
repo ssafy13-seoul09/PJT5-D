@@ -1,5 +1,6 @@
 package com.ssafy.video.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.video.model.dto.Video;
@@ -27,11 +28,30 @@ public class VideoServiceImpl implements VideoService{
 	}
 
 	@Override
-	public List<Video> selectPopularVideos(int viewCnt) {
+	public List<Video> selectPopularVideos() {
 		List<Video> allVideos = repo.selectAll();
+		int N = allVideos.size();
+		
+		// 조회수를 기준으로 정렬한다.
+		for(int i=0; i < N-1; i++) {
+			for(int j=0; j<N-1-i; j++) {
+				if(allVideos.get(j).getViewCnt()<allVideos.get(j+1).getViewCnt()) {
+					Video temp = allVideos.get(j);
+					allVideos.set(j, allVideos.get(j+1));
+					allVideos.set(j+1, temp);
+				}
+			}	
+		}
 		
 		
-		return null;
+		List<Video> topVideos = new ArrayList<>();
+		int Top = 3;
+		for(int i=0; i< Top; i++) {
+			topVideos.add(allVideos.get(i));
+		}
+		
+		
+		return topVideos;
 	}
 
 	@Override
@@ -39,6 +59,22 @@ public class VideoServiceImpl implements VideoService{
 		
 		
 		return null;
+	}
+
+	@Override
+	public Video selectOne(String youtubeId) {
+		List<Video> allVideos = repo.selectAll();
+		int N = allVideos.size();
+		
+		Video selVid = new Video();
+		for(int i=0; i<N; i++) {
+			if(allVideos.get(i).getYoutubeId().equals(youtubeId)) {
+				selVid = allVideos.get(i);
+			}
+		}
+		
+		
+		return selVid;
 	}
 	
 

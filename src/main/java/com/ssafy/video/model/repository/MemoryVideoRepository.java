@@ -62,7 +62,6 @@ public class MemoryVideoRepository implements VideoRepository{
 
 		@Override
 		public boolean updateViewCnt(String youtubeId) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 

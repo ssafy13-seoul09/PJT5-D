@@ -1,8 +1,6 @@
 package com.ssafy.review.model.dto;
 
 import java.sql.Timestamp;
-//import java.sql.Date;
-//import java.time.LocalDateTime;
 
 // reviewcontroller: 개별 리뷰 조회, 생성, 수정
 
@@ -19,7 +17,6 @@ public class Review {
 	private String youtubeId; // FK로 video로 이어 1:N 관계 만들기 
 	
 	public Review() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	// 입력받아야 하는 항목 3개

@@ -3,9 +3,6 @@ package com.ssafy.video.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ssafy.review.model.dto.Review;
-import com.ssafy.review.model.repository.ReviewRepository;
-import com.ssafy.review.model.repository.ReviewRepositoryImpl;
 import com.ssafy.video.model.dto.Video;
 import com.ssafy.video.model.repository.VideoRepository;
 import com.ssafy.video.model.repository.VideoRepositoryImpl;

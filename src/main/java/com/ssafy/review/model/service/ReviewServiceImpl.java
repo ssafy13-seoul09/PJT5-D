@@ -23,7 +23,6 @@ public class ReviewServiceImpl implements ReviewService {
 	// service 메소드는 repo에만 계속 던져주기
 	@Override
 	public List<Review> selectAll() {
-		// TODO Auto-generated method stub
 		return repo.selectAll();
 	}
 
@@ -34,7 +33,6 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public Review select(int reviewId) {
-		// TODO Auto-generated method stub
 		return repo.select(reviewId);
 	}
 

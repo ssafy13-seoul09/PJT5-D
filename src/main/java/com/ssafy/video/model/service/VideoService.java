@@ -1,7 +1,6 @@
 package com.ssafy.video.model.service;
 import java.util.List;
 
-import com.ssafy.review.model.dto.Review;
 import com.ssafy.video.model.dto.Video;
 
 public interface VideoService {

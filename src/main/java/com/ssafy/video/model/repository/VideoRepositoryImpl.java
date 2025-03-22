@@ -8,11 +8,7 @@ import com.ssafy.video.model.dto.Video;
 import java.sql.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.ssafy.video.model.dto.Video;
 
 public class VideoRepositoryImpl implements VideoRepository{
 	// 영화를 담을 객체를 Singleton Pattern으로 관리해준다.
@@ -104,7 +100,6 @@ public class VideoRepositoryImpl implements VideoRepository{
 		Connection conn = null;
 		PreparedStatement pst = null;
 		int result = 0;
-		// ResultSet rs = null;
 		
 		
 		String sql = "UPDATE video SET view_count = view_count + 1 WHERE youtube_id=?";

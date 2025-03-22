@@ -1,8 +1,5 @@
 package com.ssafy.video.model.dto;
 
-//import java.util.List;
-//import com.ssafy.review.model.dto.Review;
-
 public class Video {
 	private String title;
 	private String fitPartName;
@@ -57,8 +54,5 @@ public class Video {
 		return "Video [title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
 				+ channelName + ", viewCnt=" + viewCnt + "]";
 	}
-	
-	
-	
 	
 }

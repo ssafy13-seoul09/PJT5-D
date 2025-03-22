@@ -7,7 +7,6 @@ import com.ssafy.review.model.dto.Review;
 import com.ssafy.review.model.service.ReviewService;
 import com.ssafy.review.model.service.ReviewServiceImpl;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +23,6 @@ public class ReviewController extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String act = req.getParameter("act");
 		
 		switch (act) { 

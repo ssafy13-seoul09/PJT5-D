@@ -12,7 +12,7 @@ public interface ReviewRepository {
 	public abstract List<Review> getReviewsbyId(String youtubeId);
 	
 	// 개별 리뷰 조회/삭제/업데이트 위한 1개 선택하기
-	public abstract Review select(int reivewId);
+	public abstract Review select(int reviewId);
 	
 	public abstract boolean insertReview(Review review);
 	

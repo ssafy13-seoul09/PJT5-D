@@ -100,7 +100,7 @@ public class VideoController extends HttpServlet {
 
     // 개별 비디오 가져오기
     private void doSelectVid(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 가져올 비디 선택
+        // 가져올 비디오 선택
         String youtubeId = req.getParameter("youtubeId");
 
         // youtubeId 기반으로 video 가져오기

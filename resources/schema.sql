@@ -51,5 +51,6 @@ CREATE TABLE following (
     followee_id VARCHAR(255) NOT NULL,
     PRIMARY KEY (follower_id, followee_id),
     FOREIGN KEY (follower_id) REFERENCES user(user_id),
-    FOREIGN KEY (followee_id) REFERENCES user(user_id)
+    FOREIGN KEY (followee_id) REFERENCES user(user_id),
+    CONSTRAINT check_different CHECK (follower_id != followee_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;

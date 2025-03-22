@@ -54,11 +54,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean follow(String userId, String targetId) {
+        if (userId.equals(targetId)) {
+            return false;
+        }
         return repo.addFollowing(userId, targetId);
     }
 
     @Override
     public boolean unfollow(String userId, String targetId) {
+        if (userId.equals(targetId)) {
+            return false;
+        }
         return repo.removeFollowing(userId, targetId);
     }
 

@@ -62,6 +62,14 @@ public interface UserRepository {
     public abstract boolean removeFollowing(String userId, String targetId);
 
     /**
+     * 팔로잉 여부 확인
+     *
+     * @param userId   팔로우하는 회원 ID
+     * @param targetId 팔로우 대상 회원 ID
+     */
+    public abstract boolean checkFollowing(String userId, String targetId);
+
+    /**
      * 회원이 좋아요한 비디오 목록 조회
      *
      * @param userId 조회할 회원 ID
@@ -86,4 +94,12 @@ public interface UserRepository {
      * @return 삭제 성공 여부, 다음 경우 false: 존재하지 않는 회원, 좋아요 중이 아님
      */
     public abstract boolean removeLikedVideo(String userId, String videoId);
+
+    /**
+     * 비디오 좋아요 여부 확인
+     *
+     * @param userId  회원 ID
+     * @param videoId 비디오 ID
+     */
+    public abstract boolean checkLikedVideo(String userId, String videoId);
 }

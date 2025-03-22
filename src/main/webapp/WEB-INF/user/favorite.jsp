@@ -17,9 +17,9 @@
   </c:if>
 
   <c:forEach var="video" items="${likedvideolist}">
-    <p><c:out value="${video}"/></p>
+    <a href="video?act=reviewPage&youtubeId=${video.youtubeId}"><c:out value="${video.title}"/></a>
     <jsp:include page="/common/likeButton.jsp">
-      <jsp:param name="videoId" value="${video}"/>
+      <jsp:param name="videoId" value="${video.youtubeId}"/>
     </jsp:include>
   </c:forEach>
 

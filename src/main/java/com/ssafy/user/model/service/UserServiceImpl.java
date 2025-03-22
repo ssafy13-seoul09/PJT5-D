@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ssafy.user.model.dto.User;
 import com.ssafy.user.model.repository.UserRepositoryImpl;
+import com.ssafy.video.model.dto.Video;
 import com.ssafy.user.model.repository.UserRepository;
 
 public class UserServiceImpl implements UserService {
@@ -74,7 +75,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getLikedVideos(String userId) {
+    public List<Video> getLikedVideos(String userId) {
         return repo.getLikedVideos(userId);
     }
 

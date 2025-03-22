@@ -10,6 +10,7 @@
 </head>
   
 <body>
+  <jsp:include page="/common/header.jsp" />
 	<!-- 리뷰 테이블 -->
 	<table border ="1">
 		<tr>
@@ -54,5 +55,6 @@
 	</table>
 
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

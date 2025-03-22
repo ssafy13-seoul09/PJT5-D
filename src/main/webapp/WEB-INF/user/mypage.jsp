@@ -8,9 +8,11 @@
 <title>마이페이지</title>
 </head>
 <body>
+  <jsp:include page="/common/header.jsp" />
     <h2><c:out value="${sessionScope.loginUser}"/>의 마이페이지</h2>
     <a href="user?act=logout">로그아웃</a>
     <a href="user?act=likedvideolist">좋아요한 영상 목록</a>
     <a href="user?act=followlist">팔로잉 목록</a>
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

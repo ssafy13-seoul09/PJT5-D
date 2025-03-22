@@ -1,5 +1,11 @@
 package com.ssafy.user.model.dto;
 
+/**
+ * 회원 데이터 전송을 위한 DTO
+ *
+ * - 비밀번호는 평문으로 저장됨에 주의
+ * - 사용자는 userId로 고유하게 식별됨
+ */
 public class User {
     private String userId;
     private String password;
@@ -28,6 +34,7 @@ public class User {
         this.password = password;
     }
 
+    // 비밀번호 제외
     @Override
     public String toString() {
         return userId;

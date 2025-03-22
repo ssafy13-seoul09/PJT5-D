@@ -8,6 +8,7 @@
 <title>팔로잉 목록</title>
 </head>
 <body>
+  <jsp:include page="/common/header.jsp" />
   <h2><c:out value="${sessionScope.loginUser}"/>의 팔로잉 목록</h2>
 
   <c:if test="${empty followlist}">
@@ -18,5 +19,6 @@
     <p><c:out value="${follow}"/></p>
   </c:forEach>
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

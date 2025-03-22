@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.ssafy.user.model.dto.User;
 import com.ssafy.util.DBUtil;
+import com.ssafy.video.model.dto.Video;
 
 public class UserRepositoryImpl implements UserRepository {
 
@@ -204,11 +205,10 @@ public class UserRepositoryImpl implements UserRepository {
         return result;
     }
 
-
     @Override
-    public List<String> getLikedVideos(String userId) {
-        String sql = "SELECT * FROM likedvideo WHERE user_id = ?;";
-        List<String> result = new ArrayList<>();
+    public List<Video> getLikedVideos(String userId) {
+        String sql = "SELECT v.* FROM video v JOIN likedvideo l ON v.youtube_id = l.youtube_id WHERE l.user_id = ?;";
+        List<Video> result = new ArrayList<>();
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -222,7 +222,13 @@ public class UserRepositoryImpl implements UserRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                result.add(rs.getString("youtube_id"));
+                Video video = new Video();
+                video.setYoutubeId(rs.getString("youtube_id"));
+                video.setTitle(rs.getString("title"));
+                video.setFitPartName(rs.getString("fitpart_name"));
+                video.setChannelName(rs.getString("channel_name"));
+                video.setViewCnt(rs.getInt("view_count"));
+                result.add(video);
             }
 
         } catch (SQLException e) {

@@ -3,6 +3,7 @@ package com.ssafy.user.model.repository;
 import java.util.List;
 
 import com.ssafy.user.model.dto.User;
+import com.ssafy.video.model.dto.Video;
 
 /**
  * 회원 정보 및 관계/상호작용 관리를 위한 데이터 접근 인터페이스
@@ -73,9 +74,9 @@ public interface UserRepository {
      * 회원이 좋아요한 비디오 목록 조회
      *
      * @param userId 조회할 회원 ID
-     * @return 좋아요한 비디오 ID 목록, 조회 회원 혹은 좋아요한 비디오가 없을 경우 빈 목록
+     * @return 좋아요한 비디오 목록, 조회 회원 혹은 좋아요한 비디오가 없을 경우 빈 목록
      */
-    public abstract List<String> getLikedVideos(String userId);
+    public abstract List<Video> getLikedVideos(String userId);
 
     /**
      * 좋아요한 비디오 추가

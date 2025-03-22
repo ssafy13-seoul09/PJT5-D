@@ -12,6 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+  <jsp:include page="/common/header.jsp" />
 	<%
 		// req에서 받은 데이터를 pageContext에서 변수로 저장하고, 하나씩 출력한다.
 		List<Video> videoList = (List<Video>)request.getAttribute("list");	
@@ -50,5 +51,6 @@
 	
 	<a href = "index.jsp">홈으로</a>
 	
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

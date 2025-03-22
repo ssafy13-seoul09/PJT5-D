@@ -8,6 +8,7 @@
 <title>좋아요한 영상 목록</title>
 </head>
 <body>
+  <jsp:include page="/common/header.jsp" />
   <h2><c:out value="${sessionScope.loginUser}"/>의 좋아요 한 영상 목록</h2>
 
   <c:if test="${empty likedvideolist}">
@@ -18,5 +19,6 @@
     <p><c:out value="${video}"/></p>
   </c:forEach>
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

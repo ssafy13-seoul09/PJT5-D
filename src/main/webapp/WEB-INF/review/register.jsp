@@ -7,6 +7,7 @@
 <title>리뷰 등록</title>
 </head>
 <body>
+  <jsp:include page="/common/header.jsp" />
 	<h2>리뷰 등록</h2>
 	<form action="review" method="POST">
 		<input type="hidden" name="act" value="write">
@@ -18,5 +19,6 @@
 		<div>내용 : <textarea rows="10" cols="30" name="content"></textarea></div>
 		<button>게시글등록</button>	
 	</form>
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

@@ -7,7 +7,7 @@
     <title>${video.title} 상세보기</title>
 </head>
 <body>
-
+  <jsp:include page="/common/header.jsp" />
 <h1>${video.title}</h1>
 <p>${video.description}</p>
 
@@ -21,5 +21,6 @@
 <!-- 비디오 목록으로 돌아가기 -->
 <a href="/video?act=selectAll">비디오 목록으로 돌아가기</a>
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

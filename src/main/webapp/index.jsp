@@ -11,18 +11,7 @@
 <title>SSAFIT</title>
 </head>
 <body>
-    <header>
-        <c:if test="${empty sessionScope.loginUser}">
-            <a href="user?act=loginform">로그인</a>
-            <a href="user?act=registform">회원가입</a>
-        </c:if>
-
-        <c:if test="${not empty sessionScope.loginUser}">
-            ${sessionScope.loginUser}님 환영합니다.
-            <a href="user?act=logout">로그아웃</a>
-            <a href="user?act=mypage">마이페이지</a>
-        </c:if>
-    </header>
+  <jsp:include page="/common/header.jsp" />
 
 	<h2>최근 가장 많이 본 영상</h2>
 	<a href = "video?act=favoriteList">
@@ -141,5 +130,6 @@
 		모든 비디오 확인
 	</a>
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

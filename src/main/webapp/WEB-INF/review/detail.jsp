@@ -8,7 +8,7 @@
 <title>리뷰 상세보기</title>
 </head>
 <body>
-
+  <jsp:include page="/common/header.jsp" />
 	<h2>${review.title }</h2>
 	<div>
 		${review.contents}
@@ -30,5 +30,6 @@
 	  <!-- 목록 보기 -->
 	  <!-- <a href="video?act=detail&youtubeId=${review.youtubeId}">돌아가기</a> -->
 
+  <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

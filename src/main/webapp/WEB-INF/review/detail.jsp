@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 상세보기</title>
+<script><%@ include file="/common/followButton.js" %></script>
 </head>
 <body>
   <jsp:include page="/common/header.jsp" />
@@ -22,8 +23,10 @@
 	    <a href="review?act=updateform&reviewId=${review.reviewId}">수정</a>
       </c:if>
       <c:if test="${sessionScope.loginUser.toString() ne review.authorId}">
-        <a href="user?act=follow&id=${review.authorId}">팔로우</a>
-        <a href="user?act=unfollow&id=${review.authorId}">언팔로우</a>
+        작성자: ${review.authorId}
+        <jsp:include page="/common/followButton.jsp">
+          <jsp:param name="targetId" value="${review.authorId}"/>
+        </jsp:include>
       </c:if>
     </c:if>
 

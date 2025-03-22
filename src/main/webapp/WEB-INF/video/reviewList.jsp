@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 전체 리스트 보기</title>
+<script><%@ include file="/common/likeButton.js" %></script>
 </head>
   
 <body>
@@ -27,10 +28,10 @@
 			<td>${selVid.viewCnt}</td>
 		</tr>
 	</table>
-    <c:if test="${not empty sessionScope.loginUser}">
-      <a href="user?act=likevideo&id=${selVid.youtubeId}">좋아요</a>
-      <a href="user?act=unlikevideo&id=${selVid.youtubeId}">좋아요 취소</a>
-    </c:if>
+
+  <jsp:include page="/common/likeButton.jsp">
+    <jsp:param name="videoId" value="${selVid.youtubeId}"/>
+  </jsp:include>
 	
 	<h2>영상 리뷰 목록</h2>
 	<table border ="1">

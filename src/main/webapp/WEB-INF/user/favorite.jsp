@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>좋아요한 영상 목록</title>
+<script><%@ include file="/common/likeButton.js" %></script>
 </head>
 <body>
   <jsp:include page="/common/header.jsp" />
@@ -17,6 +18,9 @@
 
   <c:forEach var="video" items="${likedvideolist}">
     <p><c:out value="${video}"/></p>
+    <jsp:include page="/common/likeButton.jsp">
+      <jsp:param name="videoId" value="${video}"/>
+    </jsp:include>
   </c:forEach>
 
   <jsp:include page="/common/footer.jsp" />

@@ -19,7 +19,7 @@ public class UserController extends HttpServlet {
     private static final int LOGIN_SESSION_TIMEOUT = 60 * 60;
 
     // JSP 경로
-    private static final String PAGE_INDEX = "/index.jsp";
+    private static final String PAGE_INDEX = "index.jsp";
     private static final String PAGE_MYPAGE = "/WEB-INF/user/mypage.jsp";
     private static final String PAGE_REGISTER = "/WEB-INF/user/register.jsp";
     private static final String PAGE_LOGIN = "/WEB-INF/user/login.jsp";

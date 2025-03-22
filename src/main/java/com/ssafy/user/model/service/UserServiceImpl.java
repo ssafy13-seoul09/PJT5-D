@@ -69,6 +69,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean checkFollowing(String userId, String targetId) {
+        return repo.checkFollowing(userId, targetId);
+    }
+
+    @Override
     public List<String> getLikedVideos(String userId) {
         return repo.getLikedVideos(userId);
     }
@@ -82,4 +87,10 @@ public class UserServiceImpl implements UserService {
     public boolean unlikeVideo(String userId, String videoId) {
         return repo.removeLikedVideo(userId, videoId);
     }
+
+    @Override
+    public boolean checkLikedVideo(String userId, String videoId) {
+        return repo.checkLikedVideo(userId, videoId);
+    }
+
 }

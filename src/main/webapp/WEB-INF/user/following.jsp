@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>팔로잉 목록</title>
+<script><%@ include file="/common/followButton.js" %></script>
 </head>
 <body>
   <jsp:include page="/common/header.jsp" />
@@ -17,6 +18,9 @@
 
   <c:forEach var="follow" items="${followlist}">
     <p><c:out value="${follow}"/></p>
+    <jsp:include page="/common/followButton.jsp">
+      <jsp:param name="targetId" value="${follow}"/>
+    </jsp:include>
   </c:forEach>
 
   <jsp:include page="/common/footer.jsp" />

@@ -177,6 +177,35 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean checkFollowing(String userId, String targetId) {
+        String sql = "SELECT * FROM following WHERE follower_id = ? AND followee_id = ?;";
+        boolean result = false;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = dbUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, userId);
+            pstmt.setString(2, targetId);
+            rs = pstmt.executeQuery();
+
+            result = rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbUtil.close(rs, pstmt, conn);
+        }
+
+        return result;
+    }
+
+
+    @Override
     public List<String> getLikedVideos(String userId) {
         String sql = "SELECT * FROM likedvideo WHERE user_id = ?;";
         List<String> result = new ArrayList<>();
@@ -257,4 +286,31 @@ public class UserRepositoryImpl implements UserRepository {
         return result;
     }
 
+    @Override
+    public boolean checkLikedVideo(String userId, String videoId) {
+        String sql = "SELECT * FROM likedvideo WHERE user_id = ? AND youtube_id = ?;";
+        boolean result = false;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = dbUtil.getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, userId);
+            pstmt.setString(2, videoId);
+            rs = pstmt.executeQuery();
+
+            result = rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbUtil.close(rs, pstmt, conn);
+        }
+
+        return result;
+    }
 }

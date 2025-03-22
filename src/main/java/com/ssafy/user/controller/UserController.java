@@ -54,6 +54,9 @@ public class UserController extends HttpServlet {
             case "follow":
                 doFollow(req, resp);
                 break;
+            case "checkfollow":
+                doCheckFollow(req, resp);
+                break;
             case "unfollow":
                 doUnfollow(req, resp);
                 break;
@@ -65,6 +68,9 @@ public class UserController extends HttpServlet {
                 break;
             case "unlikevideo":
                 doUnlikeVideo(req, resp);
+                break;
+            case "checklike":
+                doCheckLike(req, resp);
                 break;
             case "mypage":
                 req.getRequestDispatcher(PAGE_MYPAGE).forward(req, resp);
@@ -182,6 +188,12 @@ public class UserController extends HttpServlet {
         resp.sendRedirect(referer);
     }
 
+    private void doCheckFollow(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String userId = getLoginUser(req);
+        String targetId = req.getParameter("id");
+        resp.getWriter().print(userService.checkFollowing(userId, targetId));
+    }
+
     // TODO: Consistent Naming
     private void doLikedVideoList(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -219,5 +231,11 @@ public class UserController extends HttpServlet {
         userService.likeVideo(userId, videoId);
 
         resp.sendRedirect(referer);
+    }
+
+    private void doCheckLike(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String userId = getLoginUser(req);
+        String videoId = req.getParameter("id");
+        resp.getWriter().print(userService.checkLikedVideo(userId, videoId));
     }
 }

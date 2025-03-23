@@ -28,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public List<Review> getReviewsbyId(String youtubeId) {
-		return repo.getReviewsbyId(youtubeId);
+		return repo.getReviews(youtubeId);
 	}
 	
 	@Override

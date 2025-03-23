@@ -89,7 +89,7 @@ public class VideoServiceImpl implements VideoService{
 	public void getReviewbyId(String youtubeId) {
 		
 		// db에서 가져와야 하므로 repo 호출  
-		repo.getReviewbyId(youtubeId);
+		repo.getReviews(youtubeId);
 	}	
 
 }

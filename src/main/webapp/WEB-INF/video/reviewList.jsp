@@ -67,6 +67,17 @@
       </tr>
     </c:forEach>
   </table>
+  <!-- 로그인한 경우만 작성 페이지 보여주고 안 하면 막기-->
+  <c:choose>
+  	<c:when test="${not empty sessionScope.loginUser}">
+	  <a href="review?act=writeform&youtubeId=${selVid.youtubeId}">새 리뷰 등록하기</a>
+  	</c:when>
+  	<c:otherwise>
+  		<p>로그인 후에 댓글을 작성하실 수 있습니다</p>
+  	</c:otherwise>
+ 
+  </c:choose>
+  <a href="index.jsp">메인 페이지로</a>
 
 
   <jsp:include page="/common/footer.jsp" />

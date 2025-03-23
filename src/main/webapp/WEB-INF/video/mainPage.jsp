@@ -25,12 +25,11 @@
           popVideos = new ArrayList<>();
       } else {
           Collections.sort(popVideos, (o1, o2) -> o2.getViewCnt() - o1.getViewCnt());
-          // 아영: vidoes 5개보다 작을 떄도 동작하도록 설정 
-          int endIndex = Math.min(5, popVideos.size());
-          popVideos = popVideos.subList(0, endIndex);
+          popVideos = popVideos.subList(0, 5);
           request.setAttribute("popVideos", popVideos);
       }
   %>
+
 
   <table border="1">
     <tr>

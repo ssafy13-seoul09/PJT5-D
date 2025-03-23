@@ -30,8 +30,8 @@
       </c:if>
     </c:if>
 
-	  <!-- 목록 보기 -->
-	  <!-- <a href="video?act=detail&youtubeId=${review.youtubeId}">돌아가기</a> -->
+	<!-- 목록 보기 -->
+   <a href="video?act=reviewPage&youtubeId=${review.youtubeId}">돌아가기</a>
 
   <jsp:include page="/common/footer.jsp" />
 </body>

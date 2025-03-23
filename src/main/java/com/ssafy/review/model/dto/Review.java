@@ -64,6 +64,7 @@ public class Review {
 	}
 
 	public void setAuthorId(String authorId) {
+		// 익명일 경우에 Null이 들어가지 않도록 처
 		this.authorId = authorId;
 	}
 

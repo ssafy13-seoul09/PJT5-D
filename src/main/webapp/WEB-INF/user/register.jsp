@@ -14,7 +14,7 @@
     </script>
   </c:if>
   <form action="user" method="POST">
-    <input type="hidden" name="act" value="regist">
+    <input type="hidden" name="act" value="register">
     <input type="text" name="id" placeholder="아이디를 입력하세요">
     <input type="password" name="password" placeholder="비밀번호를 입력하세요">
     <input type="submit" value="회원가입">

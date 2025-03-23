@@ -12,11 +12,11 @@
   <jsp:include page="/common/header.jsp" />
   <h2><c:out value="${sessionScope.loginUser}"/>의 좋아요 한 영상 목록</h2>
 
-  <c:if test="${empty likedvideolist}">
+  <c:if test="${empty likedVideoList}">
     <p>좋아요한 영상이 없습니다.</p>
   </c:if>
 
-  <c:forEach var="video" items="${likedvideolist}">
+  <c:forEach var="video" items="${likedVideoList}">
     <a href="video?act=reviewPage&youtubeId=${video.youtubeId}"><c:out value="${video.title}"/></a>
     <jsp:include page="/common/likeButton.jsp">
       <jsp:param name="videoId" value="${video.youtubeId}"/>

@@ -3,8 +3,8 @@
 
 <header>
   <c:if test="${empty sessionScope.loginUser}">
-    <a href="user?act=loginform">로그인</a>
-    <a href="user?act=registform">회원가입</a>
+    <a href="user?act=loginForm">로그인</a>
+    <a href="user?act=registerForm">회원가입</a>
     <a href="index.jsp">메인페이지</a>
   </c:if>
   <c:if test="${not empty sessionScope.loginUser}">

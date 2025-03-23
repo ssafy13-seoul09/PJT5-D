@@ -39,12 +39,6 @@ public class VideoController extends HttpServlet {
             case "reviewPage":
                 doReview(req, resp);
                 break;
-
-            case "getReview":
-                doGetReview(req, resp);
-
-            case "selectVid":
-                doSelectVid(req, resp);
         }
     }
 
@@ -69,7 +63,6 @@ public class VideoController extends HttpServlet {
         req.setAttribute("selVid", selVid);
         req.setAttribute("list", reviewList);
 
-        // reviewList.jsp로 넘겨주기 > detail로 이름 바꾸는게 좋나?? (나중에)
         RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/reviewList.jsp");
         disp.forward(req, resp);
 
@@ -85,33 +78,6 @@ public class VideoController extends HttpServlet {
         disp.forward(req, resp);
         dispTest.forward(req, resp);
 
-    }
-
-    // youtubeId 일치하는 리뷰 찾기
-    private void doGetReview(HttpServletRequest req, HttpServletResponse resp) {
-        String youtubeId = (String) req.getAttribute("youtubeId");
-
-        // service 호출
-        service.getReviewbyId(youtubeId);
-
-        // 가져온걸 어디로 던져줘야 하지? index 페이지로 다시 넘겨주기??
-        throw new UnsupportedOperationException("doGetReview 미구현");
-    }
-
-    // 개별 비디오 가져오기
-    private void doSelectVid(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 가져올 비디오 선택
-        String youtubeId = req.getParameter("youtubeId");
-
-        // youtubeId 기반으로 video 가져오기
-        Video video = service.select(youtubeId);
-
-        // 가져온 비디오를 JSP에 전달
-        req.setAttribute("video", video);
-
-        // 비디오 상세 페이지로 포워딩
-        RequestDispatcher disp = req.getRequestDispatcher("/videoDetail.jsp");
-        disp.forward(req, resp);
     }
 
 }

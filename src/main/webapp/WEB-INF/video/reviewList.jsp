@@ -73,7 +73,7 @@
 	  <a href="review?act=writeform&youtubeId=${selVid.youtubeId}">새 리뷰 등록하기</a>
   	</c:when>
   	<c:otherwise>
-  		<p>로그인 후에 댓글을 작성하실 수 있습니다</p>
+  		<p>로그인 후에 리뷰를 작성하실 수 있습니다</p>
   	</c:otherwise>
  
   </c:choose>

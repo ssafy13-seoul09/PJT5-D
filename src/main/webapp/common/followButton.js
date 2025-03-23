@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       followBtn.style.display = 'none';
       unfollowBtn.style.display = '';
     } else {
-      followBtn.style.display = 'i';
+      followBtn.style.display = '';
       unfollowBtn.style.display = 'none';
     }
   }

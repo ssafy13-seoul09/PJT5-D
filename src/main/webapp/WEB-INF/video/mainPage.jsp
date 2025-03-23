@@ -30,6 +30,7 @@
       }
   %>
 
+
   <table border="1">
     <tr>
       <th>번호</th>

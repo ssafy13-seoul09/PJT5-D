@@ -75,6 +75,10 @@ public class ReviewController extends HttpServlet {
 
 	// 작성 화면 보여주기
 	private void doWriteForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 리뷰 선택해서 추가하기
+		String youtubeId = req.getParameter("youtubeId");
+		req.setAttribute("youtubeId", youtubeId);
+		
 		req.getRequestDispatcher("WEB-INF/review/register.jsp").forward(req, resp);
 	}
 
@@ -85,17 +89,22 @@ public class ReviewController extends HttpServlet {
 		String title = req.getParameter("title");
 		String writer = (String) session.getAttribute("loginUser");
 		String content = req.getParameter("content");
+		String youtubeId = req.getParameter("youtubeId");
+		
 		
         // 현재 시간 생성
         Timestamp now = new Timestamp(System.currentTimeMillis());
         
-		Review review = new Review(0, title, writer, content, now, 0, req.getParameter("youtubeId"));
-		
+		Review review = new Review(0, title, writer, content, now, 0, youtubeId);
 		//게시글 등록: 서비스 호출
 		service.insertReview(review);
+		
+        // 데이터 저장
+        req.setAttribute("review", review);
 
-		// 게시글 전체보기
-		resp.sendRedirect("review?act=list");
+		// 게시글 전체보기 -> 이전으로 다시 돌아가기
+//		resp.sendRedirect("review?act=list");
+		resp.sendRedirect(req.getContextPath() + "/video?act=reviewPage&youtubeId=" + youtubeId);
 	}
 
 	// 수정 버튼 클릭하면 수정 폼 띄워주기

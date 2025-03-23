@@ -1,73 +1,74 @@
 package com.ssafy.review.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.review.model.dto.Review;
 import com.ssafy.review.model.repository.ReviewRepository;
 import com.ssafy.review.model.repository.ReviewRepositoryImpl;
+import com.ssafy.util.ValidationUtils;
 
 public class ReviewServiceImpl implements ReviewService {
 
-	// singleton 관리
-	private static ReviewService service = new ReviewServiceImpl();
-	private ReviewRepository repo = ReviewRepositoryImpl.getInstance();
-	
-	public ReviewServiceImpl() {
- 
-	}
-	
-	public static ReviewService getInstance() {
-		return service;
-	}
-	
-	// service 메소드는 repo에만 계속 던져주기
-	@Override
-	public List<Review> selectAll() {
-		return repo.selectAll();
-	}
+    private final ReviewRepository repo;
 
-	@Override
-	public List<Review> getReviewsbyId(String youtubeId) {
-		return repo.getReviews(youtubeId);
-	}
-	
-	@Override
-	public Review select(int reviewId) {
-		return repo.select(reviewId);
-	}
+    private static final ReviewService INSTANCE = new ReviewServiceImpl();
 
-	// service 단에서 boolean 처리하는건 repo의 boolean이랑 뭐가 달라야할까???
-	// service단의 예외 -> 사용자가 전달한 값의 유효성 검사
-	@Override
-	public boolean insertReview(Review review) {
-		// 사용자 전달 값의 유효성 검사: 제공해준 값이 없으면 false
-		if (review == null) return false;
-		
-		repo.insertReview(review);
-		return true;
-	}
+    public ReviewServiceImpl() {
+        repo = ReviewRepositoryImpl.getInstance();
+    }
 
-	@Override
-	public boolean updateReview(Review review) {
-		// 사용자 전달 값의 유효성 검사: 제공해준 값이 없으면 false
-		if (review == null) return false;
-		
-		repo.updateReview(review);
-		return true;
-	}
+    public static ReviewService getInstance() {
+        return INSTANCE;
+    }
 
-	@Override
-	public boolean removeReview(int reviewId) {
-		// 사용자가 제공한 id값 유효성 검증
-		if (reviewId <= 0) return false;
-		repo.deleteReview(reviewId);
-		return true;
-	}
+    @Override
+    public Review select(int reviewId) {
+        return ValidationUtils.checkReviewId(reviewId) ? repo.select(reviewId) : null;
+    }
 
-	@Override
-	public boolean updateViewCnt(int reviewId) {
-		if (reviewId <= 0) return false;
-		return repo.updateViewCnt(reviewId);
-	}
+    @Override
+    public List<Review> selectAll() {
+        return repo.selectAll();
+    }
 
+    @Override
+    public boolean insertReview(Review review) {
+        // TODO: 리뷰 제목 및 내용 유효성 검사
+        if (review == null
+                || !ValidationUtils.checkYoutubeId(review.getYoutubeId())
+                || !ValidationUtils.checkUserId(review.getAuthorId())) {
+            return false;
+        }
+
+        return repo.insertReview(review);
+    }
+
+    @Override
+    public List<Review> getReviewsbyId(String youtubeId) {
+        return ValidationUtils.checkYoutubeId(youtubeId) ? repo.getReviews(youtubeId) : new ArrayList<>();
+    }
+
+    @Override
+    public boolean updateReview(Review review) {
+        // TODO: 리뷰 제목 및 내용 유효성 검사
+        if (review == null
+                || !ValidationUtils.checkYoutubeId(review.getYoutubeId())
+                || !ValidationUtils.checkUserId(review.getAuthorId())
+                || !ValidationUtils.checkReviewId(review.getReviewId())) {
+            return false;
+        }
+
+        return repo.updateReview(review);
+    }
+
+    @Override
+    public boolean removeReview(int reviewId) {
+        return ValidationUtils.checkReviewId(reviewId) && repo.deleteReview(reviewId);
+    }
+
+    @Override
+    public boolean updateViewCnt(int reviewId) {
+        return ValidationUtils.checkReviewId(reviewId) && repo.updateViewCnt(reviewId);
+    }
 }

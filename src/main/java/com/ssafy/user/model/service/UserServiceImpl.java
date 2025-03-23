@@ -1,18 +1,22 @@
 package com.ssafy.user.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.user.model.dto.User;
-import com.ssafy.user.model.repository.UserRepositoryImpl;
 import com.ssafy.video.model.dto.Video;
 import com.ssafy.user.model.repository.UserRepository;
+import com.ssafy.user.model.repository.UserRepositoryImpl;
+import com.ssafy.util.ValidationUtils;
 
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository repo;
+
     private static final UserService INSTANCE = new UserServiceImpl();
-    private final UserRepository repo = UserRepositoryImpl.getInstance();
 
     private UserServiceImpl() {
+        repo = UserRepositoryImpl.getInstance();
     }
 
     public static UserService getInstance() {
@@ -21,62 +25,68 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean userIdExists(String userId) {
-        return repo.checkUser(userId);
+        return ValidationUtils.checkUserId(userId) && repo.checkUser(userId);
     }
 
     @Override
     public boolean authenticate(String userId, String password) {
-        User user = repo.select(userId);
-        if (user == null) {
+        if (!ValidationUtils.checkUserId(userId) || password == null) {
             return false;
         }
 
-        return user.getPassword().equals(password);
+        User user = repo.select(userId);
+        return user != null && user.getPassword().equals(password);
     }
 
     @Override
     public boolean register(String userId, String password) {
-        if (userIdExists(userId)) {
+        if (!ValidationUtils.checkUserId(userId) || password == null) {
             return false;
         }
 
-        return repo.insertUser(new User(userId, password));
+        return !userIdExists(userId) || repo.insertUser(new User(userId, password));
     }
 
     @Override
     public User select(String userId) {
-        return repo.select(userId);
+        return ValidationUtils.checkUserId(userId) ? repo.select(userId) : null;
     }
 
     @Override
     public List<String> getFollowings(String userId) {
-        return repo.getFollowings(userId);
+        return ValidationUtils.checkUserId(userId) ? repo.getFollowings(userId) : new ArrayList<>();
     }
 
     @Override
     public boolean follow(String userId, String targetId) {
-        if (userId.equals(targetId)) {
+        if (!ValidationUtils.checkUserId(userId) || !ValidationUtils.checkUserId(targetId) || userId.equals(targetId)) {
             return false;
         }
+
         return repo.addFollowing(userId, targetId);
     }
 
     @Override
     public boolean unfollow(String userId, String targetId) {
-        if (userId.equals(targetId)) {
+        if (!ValidationUtils.checkUserId(userId) || !ValidationUtils.checkUserId(targetId) || userId.equals(targetId)) {
             return false;
         }
+
         return repo.removeFollowing(userId, targetId);
     }
 
     @Override
     public boolean checkFollowing(String userId, String targetId) {
+        if (!ValidationUtils.checkUserId(userId) || !ValidationUtils.checkUserId(targetId) || userId.equals(targetId)) {
+            return false;
+        }
+
         return repo.checkFollowing(userId, targetId);
     }
 
     @Override
     public List<Video> getLikedVideos(String userId) {
-        return repo.getLikedVideos(userId);
+        return ValidationUtils.checkUserId(userId) ? repo.getLikedVideos(userId) : new ArrayList<>();
     }
 
     @Override

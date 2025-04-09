@@ -17,7 +17,7 @@
 		<div>내용 : <textarea rows="10" cols="30" name="contents">${review.contents }</textarea></div>
 		<button>게시글수정</button>		
 	</form>
-	<a href="video?act=reviewPage&youtubeId=${youtubeId}">돌아가기</a>
+	<a href="video?act=reviewPage&youtubeId=${review.youtubeId}">돌아가기</a>
   <jsp:include page="/common/footer.jsp" />
 </body>
 </html>

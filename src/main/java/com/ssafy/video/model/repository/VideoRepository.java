@@ -18,5 +18,7 @@ public interface VideoRepository {
 
     // youtubeId와 일치하는 리뷰 가져오기
     public abstract List<Review> getReviews(String youtubeId);
+    
+    public abstract List<Video> searchByTitle(String keyword);
 
 }

@@ -35,5 +35,11 @@ public class VideoServiceImpl implements VideoService {
     public boolean updateViewCnt(String youtubeId) {
         return ValidationUtils.checkYoutubeId(youtubeId) && repo.updateViewCnt(youtubeId);
     }
+    
+    @Override
+    public List<Video> searchByTitle(String keyword) {
+        return repo.searchByTitle(keyword);
+    }
+
 
 }

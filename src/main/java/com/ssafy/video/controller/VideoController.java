@@ -1,6 +1,7 @@
 package com.ssafy.video.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.review.model.dto.Review;
@@ -10,12 +11,15 @@ import com.ssafy.video.model.dto.Video;
 import com.ssafy.video.model.service.VideoService;
 import com.ssafy.video.model.service.VideoServiceImpl;
 
+import com.ssafy.util.SearchUtil;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 
 @WebServlet("/video")
 public class VideoController extends HttpServlet {
@@ -39,10 +43,36 @@ public class VideoController extends HttpServlet {
             case "reviewPage":
                 doReview(req, resp);
                 break;
+                
+            case "searchTitle":
+            	doSearch(req, resp);
+            	break;
+            	
         }
     }
+    
+    
+    //검색기능
+    //KMP 알고리즘을 활용하여 검색
+    private void doSearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	String keyword = req.getParameter("keyword");
+    	List<Video> videos = service.selectAll();
+    	
+    	List<Video> result = new ArrayList<>();
+    	
+    	for (Video video : videos) {
+            if (SearchUtil.KMP(video.getTitle().toLowerCase(), keyword.toLowerCase())) {
+                result.add(video);
+            }
+        }
 
-    /**
+        req.setAttribute("videos", result);
+        RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/searchResult.jsp");
+        disp.forward(req, resp);
+    	
+    }
+
+	/**
      * 영상 메인 페이지로 포워드
      */
     private void doMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

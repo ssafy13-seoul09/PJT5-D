@@ -14,4 +14,7 @@ public interface VideoService {
     public abstract List<Video> selectAll();
 
     public boolean updateViewCnt(String youtubeId);
+    
+    public abstract List<Video> searchByTitle(String keyword);
+
 }

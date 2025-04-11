@@ -1,5 +1,7 @@
 package com.ssafy.video.model.repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,4 +63,31 @@ public class VideoRepositoryImpl implements VideoRepository {
     public List<Review> getReviews(String youtubeId) {
         throw new UnsupportedOperationException();
     }
+    
+    
+    @Override
+    public List<Video> searchByTitle(String keyword) {
+        String sql = "SELECT * FROM video WHERE LOWER(title) LIKE ?";
+        return dbUtil.executeQuery(sql,
+            pstmt -> pstmt.setString(1, "%" + keyword.toLowerCase() + "%"),
+            rs -> {
+                List<Video> list = new ArrayList<>();
+                while (rs.next()) {
+                    list.add(toVideo(rs));
+                }
+                return list;
+            }
+        );
+    }
+    
+    private Video toVideo(ResultSet rs) throws SQLException {
+        return new Video(
+            rs.getString("youtube_id"),
+            rs.getString("title"),
+            rs.getString("fit_part_name"),
+            rs.getString("channel_name"),
+            rs.getInt("view_cnt")
+        );
+    }
+
 }

@@ -13,6 +13,13 @@
 
 <body>
   <jsp:include page="/common/header.jsp" />
+  
+  <form action="video" method="get">
+    <input type="hidden" name="act" value="searchTitle">
+    <input type="text" name="keyword" placeholder="운동 영상 검색">
+    <button type="submit">검색</button>
+  </form>
+  
 
   <h2>최근 가장 많이 본 영상</h2>
 

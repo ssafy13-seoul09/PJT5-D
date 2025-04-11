@@ -1,7 +1,11 @@
 package com.ssafy.user.model.service;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import com.ssafy.user.model.dto.User;
 import com.ssafy.video.model.dto.Video;
@@ -82,6 +86,57 @@ public class UserServiceImpl implements UserService {
         }
 
         return repo.checkFollowing(userId, targetId);
+    }
+
+    // 팔로잉 거리를 기준으로 새로 팔로우 할 유저 추천
+    @Override
+    public List<String> recommendUsers(String userId) {
+        final int NUM_RECOMMENDATIONS = 10;
+
+        List<String> followings = repo.getFollowings(userId);
+        List<String> recommendedUsers = new ArrayList<>();
+
+        // BFS
+        Queue<String> q = new ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+        visited.add(userId);
+        for (String followedUser : followings) {
+            visited.add(followedUser);
+            q.add(followedUser);
+        }
+
+        while (!q.isEmpty()) {
+            String next = q.poll();
+            List<String> nextFollowings = repo.getFollowings(next);
+
+            for (String candidate : nextFollowings) {
+                if (!visited.contains(candidate)) {
+                    visited.add(candidate);
+                    q.add(candidate);
+
+                    recommendedUsers.add(candidate);
+                    if (recommendedUsers.size() == NUM_RECOMMENDATIONS) {
+                        return recommendedUsers;
+                    }
+                }
+            }
+        }
+
+        // 추천 유저가 부족할경우 임의 유저 추천
+        if (recommendedUsers.size() < NUM_RECOMMENDATIONS) {
+            List<User> allUsers = repo.selectAll();
+            for (User user : allUsers) {
+                if (!visited.contains(user.getUserId())) {
+
+                    recommendedUsers.add(user.getUserId());
+                    if (recommendedUsers.size() == NUM_RECOMMENDATIONS) {
+                        return recommendedUsers;
+                    }
+                }
+            }
+        }
+
+        return recommendedUsers;
     }
 
     @Override

@@ -8,4 +8,5 @@ public class ViewPaths {
     public static final String LOGIN = "/WEB-INF/user/login.jsp";
     public static final String FOLLOW_LIST = "/WEB-INF/user/followList.jsp";
     public static final String LIKED_VIDEO_LIST = "/WEB-INF/user/likedVideoList.jsp";
+    public static final String RECOMMEND_FOLLOW = "/WEB-INF/user/recommendFollow.jsp";
 }

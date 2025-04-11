@@ -78,6 +78,14 @@ public interface UserService {
     public abstract boolean checkFollowing(String userId, String targetId);
 
     /**
+     * 새로 팔로우할만한 사용자 목록 추천
+     *
+     * @param userId 회원 ID
+     * @return 해당 회원이 팔로우 할 만한 사용자 Id 목록
+     */
+    public abstract List<String> recommendUsers(String userId);
+
+    /**
      * 회원이 좋아요한 비디오 목록 조회
      * 
      * @param userId 조회할 회원 ID

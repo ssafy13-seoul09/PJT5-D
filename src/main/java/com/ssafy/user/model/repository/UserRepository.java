@@ -21,6 +21,11 @@ public interface UserRepository {
     public abstract User select(String userId);
 
     /**
+     * 회원 정보 전체 조회
+     */
+    public abstract List<User> selectAll();
+
+    /**
      * 회원 등록
      *
      * @param user 등록할 회원 DTO

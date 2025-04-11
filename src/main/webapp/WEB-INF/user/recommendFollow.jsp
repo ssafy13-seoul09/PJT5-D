@@ -10,6 +10,7 @@
 </head>
 <body>
   <jsp:include page="/common/header.jsp" />
+  <h2>아래 사용자들을 추천합니다.</h2>
 
   <c:if test="${empty recommendedUsers}">
     <p>추천할 사용자가 없습니다.</p>

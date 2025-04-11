@@ -33,6 +33,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public List<User> selectAll() {
+        String sql = "SELECT * FROM user;";
+
+        return dbUtil.executeQuery(sql,
+                pstmt -> {
+                },
+                rs -> {
+                    List<User> users = new ArrayList<>();
+                    while (rs.next()) {
+                        users.add(DTOFactory.createUser(rs));
+                    }
+                    return users;
+                });
+    }
+
+    @Override
     public boolean insertUser(User user) {
         String sql = "INSERT INTO user (user_id, password) VALUES (?, ?);";
 
@@ -161,4 +177,5 @@ public class UserRepositoryImpl implements UserRepository {
                 },
                 ResultSet::next);
     }
+
 }

@@ -91,40 +91,49 @@ public class UserServiceImpl implements UserService {
     // 팔로잉 거리를 기준으로 새로 팔로우 할 유저 추천
     @Override
     public List<String> recommendUsers(String userId) {
-        final int MAX_RECOMMENDATIONS = 10;
-        // final int MAX_DEPTH = 3;
+        final int NUM_RECOMMENDATIONS = 10;
 
         List<String> followings = repo.getFollowings(userId);
         List<String> recommendedUsers = new ArrayList<>();
 
+        // BFS
         Queue<String> q = new ArrayDeque<>();
         Set<String> visited = new HashSet<>();
-
         visited.add(userId);
-        for (String user : followings) {
-            visited.add(user);
-            q.add(user);
+        for (String followedUser : followings) {
+            visited.add(followedUser);
+            q.add(followedUser);
         }
 
         while (!q.isEmpty()) {
-            String curr = q.poll();
-            List<String> friends = repo.getFollowings(curr);
+            String next = q.poll();
+            List<String> nextFollowings = repo.getFollowings(next);
 
-            for (String friend : friends) {
-                if (!visited.contains(friend)) {
-                    visited.add(friend);
-                    q.add(friend);
-                    if (recommendedUsers.size() < MAX_RECOMMENDATIONS) {
-                        recommendedUsers.add(friend);
-                    } else {
+            for (String candidate : nextFollowings) {
+                if (!visited.contains(candidate)) {
+                    visited.add(candidate);
+                    q.add(candidate);
+
+                    recommendedUsers.add(candidate);
+                    if (recommendedUsers.size() == NUM_RECOMMENDATIONS) {
                         return recommendedUsers;
                     }
                 }
             }
         }
 
-        if (recommendedUsers.size() < MAX_RECOMMENDATIONS) {
-            // TODO:  
+        // 추천 유저가 부족할경우 임의 유저 추천
+        if (recommendedUsers.size() < NUM_RECOMMENDATIONS) {
+            List<User> allUsers = repo.selectAll();
+            for (User user : allUsers) {
+                if (!visited.contains(user.getUserId())) {
+
+                    recommendedUsers.add(user.getUserId());
+                    if (recommendedUsers.size() == NUM_RECOMMENDATIONS) {
+                        return recommendedUsers;
+                    }
+                }
+            }
         }
 
         return recommendedUsers;

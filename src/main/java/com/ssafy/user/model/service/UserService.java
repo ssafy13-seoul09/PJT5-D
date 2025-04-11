@@ -1,6 +1,7 @@
 package com.ssafy.user.model.service;
 
 import java.util.List;
+
 import com.ssafy.user.model.dto.User;
 import com.ssafy.video.model.dto.Video;
 

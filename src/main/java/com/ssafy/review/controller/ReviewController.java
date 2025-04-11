@@ -95,7 +95,8 @@ public class ReviewController extends HttpServlet {
         // 현재 시간 생성
         Timestamp now = new Timestamp(System.currentTimeMillis());
         
-		Review review = new Review(0, title, writer, content, now, 0, youtubeId);
+		Review review = new Review(0, youtubeId, writer, title, content, now, 0);
+
 		//게시글 등록: 서비스 호출
 		service.insertReview(review);
 		

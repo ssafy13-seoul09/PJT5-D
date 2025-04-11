@@ -12,21 +12,6 @@
 
 <body>
   <jsp:include page="/common/header.jsp" />
-  <%-- 리뷰 테이블
-  <table border="1">
-    <tr>
-      <th>제목</th>
-      <th>신체 부위</th>
-      <th>채널명</th>
-      <th>조회수</th>
-    </tr>
-    <tr>
-      <td>${selVid.title}</td>
-      <td>${selVid.fitPartName }</td>
-      <td>${selVid.channelName}</td>
-      <td>${selVid.viewCnt}</td>
-    </tr>
-  </table> --%>
 
   <div class="video-card" data-category="${selVid.fitPartName}">
     <h2 class="video-title">${selVid.title}</h5>

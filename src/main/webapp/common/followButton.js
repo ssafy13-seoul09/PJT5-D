@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (!targetId || !followBtn || !unfollowBtn) return;
     
-    fetch('user?act=checkfollow&id=' + targetId)
+    fetch('user?act=checkFollow&id=' + targetId)
       .then(response => {
         if (!response.ok) {
           throw new Error('서버 응답 오류');

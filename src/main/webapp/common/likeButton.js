@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (!videoId || !likeBtn || !unlikeBtn) return;
     
-    fetch('user?act=checklike&id=' + videoId)
+    fetch('user?act=checkLike&id=' + videoId)
       .then(response => {
         if (!response.ok) {
           throw new Error('서버 응답 오류');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 좋아요 버튼 클릭 이벤트
     likeBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      fetch('user?act=likevideo&id=' + videoId)
+      fetch('user?act=likeVideo&id=' + videoId)
         .then(response => {
           if (!response.ok) {
             throw new Error('서버 응답 오류');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 좋아요 취소 버튼 클릭 이벤트
     unlikeBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      fetch('user?act=unlikevideo&id=' + videoId)
+      fetch('user?act=unlikeVideo&id=' + videoId)
         .then(response => {
           if (!response.ok) {
             throw new Error('서버 응답 오류');

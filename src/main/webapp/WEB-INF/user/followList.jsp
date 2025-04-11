@@ -12,11 +12,11 @@
   <jsp:include page="/common/header.jsp" />
   <h2><c:out value="${sessionScope.loginUser}"/>의 팔로잉 목록</h2>
 
-  <c:if test="${empty followlist}">
+  <c:if test="${empty followList}">
     <p>팔로잉한 유저가 없습니다.</p>
   </c:if>
 
-  <c:forEach var="follow" items="${followlist}">
+  <c:forEach var="follow" items="${followList}">
     <p><c:out value="${follow}"/></p>
     <jsp:include page="/common/followButton.jsp">
       <jsp:param name="targetId" value="${follow}"/>

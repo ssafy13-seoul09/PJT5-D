@@ -1,7 +1,11 @@
 package com.ssafy.user.model.service;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import com.ssafy.user.model.dto.User;
 import com.ssafy.video.model.dto.Video;
@@ -82,6 +86,48 @@ public class UserServiceImpl implements UserService {
         }
 
         return repo.checkFollowing(userId, targetId);
+    }
+
+    // 팔로잉 거리를 기준으로 새로 팔로우 할 유저 추천
+    @Override
+    public List<String> recommendUsers(String userId) {
+        final int MAX_RECOMMENDATIONS = 10;
+        // final int MAX_DEPTH = 3;
+
+        List<String> followings = repo.getFollowings(userId);
+        List<String> recommendedUsers = new ArrayList<>();
+
+        Queue<String> q = new ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+
+        visited.add(userId);
+        for (String user : followings) {
+            visited.add(user);
+            q.add(user);
+        }
+
+        while (!q.isEmpty()) {
+            String curr = q.poll();
+            List<String> friends = repo.getFollowings(curr);
+
+            for (String friend : friends) {
+                if (!visited.contains(friend)) {
+                    visited.add(friend);
+                    q.add(friend);
+                    if (recommendedUsers.size() < MAX_RECOMMENDATIONS) {
+                        recommendedUsers.add(friend);
+                    } else {
+                        return recommendedUsers;
+                    }
+                }
+            }
+        }
+
+        if (recommendedUsers.size() < MAX_RECOMMENDATIONS) {
+            // TODO:  
+        }
+
+        return recommendedUsers;
     }
 
     @Override

@@ -55,6 +55,9 @@ public class UserController extends HttpServlet {
             case "checkFollow":
                 doCheckFollow(req, resp);
                 break;
+            case "doRecommendFollow":
+                doRecommendFollow(req, resp);
+                break;
             case "unfollow":
                 doUnfollow(req, resp);
                 break;
@@ -184,6 +187,14 @@ public class UserController extends HttpServlet {
         String targetId = req.getParameter("id");
 
         resp.getWriter().print(userService.checkFollowing(userId, targetId));
+    }
+
+
+    private void doRecommendFollow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userId = getLoginUser(req);
+        req.setAttribute("recommendedUsers", userService.recommendUsers(userId));
+
+        req.getRequestDispatcher(ViewPaths.RECOMMEND_FOLLOW).forward(req, resp);
     }
 
     private void doLikedVideoList(HttpServletRequest req, HttpServletResponse resp)

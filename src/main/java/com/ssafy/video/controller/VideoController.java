@@ -56,15 +56,8 @@ public class VideoController extends HttpServlet {
     //KMP 알고리즘을 활용하여 검색
     private void doSearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	String keyword = req.getParameter("keyword");
-    	List<Video> videos = service.selectAll();
     	
-    	List<Video> result = new ArrayList<>();
-    	
-    	for (Video video : videos) {
-            if (SearchUtil.KMP(video.getTitle().toLowerCase(), keyword.toLowerCase())) {
-                result.add(video);
-            }
-        }
+    	List<Video> result = service.searchByTitle(keyword);
 
         req.setAttribute("videos", result);
         RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/video/searchResult.jsp");

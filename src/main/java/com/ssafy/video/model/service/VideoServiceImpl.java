@@ -1,7 +1,9 @@
 package com.ssafy.video.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.ssafy.util.SearchUtil;
 import com.ssafy.util.ValidationUtils;
 import com.ssafy.video.model.dto.Video;
 import com.ssafy.video.model.repository.VideoRepository;
@@ -38,7 +40,17 @@ public class VideoServiceImpl implements VideoService {
     
     @Override
     public List<Video> searchByTitle(String keyword) {
-        return repo.searchByTitle(keyword);
+    	List<Video> videos = selectAll();
+    	
+    	List<Video> result = new ArrayList<>();
+    	
+    	for (Video video : videos) {
+            if (SearchUtil.KMP(video.getTitle().toLowerCase(), keyword.toLowerCase())) {
+                result.add(video);
+            }
+        }
+    	
+        return result;
     }
 
 

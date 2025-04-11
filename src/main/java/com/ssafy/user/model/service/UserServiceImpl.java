@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        return !userIdExists(userId) || repo.insertUser(new User(userId, password));
+        return !userIdExists(userId) && repo.insertUser(new User(userId, password));
     }
 
     @Override

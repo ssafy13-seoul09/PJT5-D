@@ -43,6 +43,10 @@ public class VideoServiceImpl implements VideoService {
     	List<Video> videos = selectAll();
     	
     	List<Video> result = new ArrayList<>();
+
+        if (keyword == null || keyword.isEmpty()) {
+            return result;
+        }
     	
     	for (Video video : videos) {
             if (SearchUtil.KMP(video.getTitle().toLowerCase(), keyword.toLowerCase())) {
